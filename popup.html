@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador de Dados</title>
+  <link rel="stylesheet" href="assets/styles/popup.css">
+</head>
+
+<body>
+  <div class="container">
+    <ul class="tabs">
+      <li class="tab active" id="tabPF">PF</li>
+      <li class="tab" id="tabPJ">PJ</li>
+      <li class="tab" id="tabCEP">CEP</li>
+      <li class="tab" id="tabAG">Bancos</li>
+    </ul>
+    <div id="msgStage" class="msgStage">
+      <div id="warning" class="success-message">Copiado para Área de Transferência</div>
+    </div>
+    <input type="text" id="generatedData" readonly="readonly" />
+    <div class="flex">
+
+      <label class="switch">
+        <input type="checkbox" id="mask">
+        <span class="info slider round" for="mask"></span>
+      </label>
+      <label class="text" for="mask">Máscara</label>
+
+    </div>
+    <div id="tabContentPF" class="tab-content active">
+      <div class="content">
+        <div id="tblPF" class="tableForm">
+          <div id="buttons">
+            <button class="cpf" id="btn-cpf">CPF</button>
+            <button class="rg" id="btn-rg">RG</button>
+            <button class="pis" id="btn-pis">PIS</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="tabContentPJ" class="tab-content">
+      <div class="content">
+        <div id="tblPJ" class="tableForm">
+          <div id="buttons">
+            <button class="cnpj" id="btn-cnpj">CNPJ</button>
+            <button class="ie" id="btn-ie">IE</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="tabContentCEP" class="tab-content">
+      <div class="content">
+        <div id="tblCEP" class="tableForm">
+          <div id="buttons">
+            <button class="cep" id="btn-cep">CEP</button>
+          </div>
+          <div id="cepInfo" class="hidden"></div>
+        </div>
+      </div>
+    </div>
+    <div id="tabContentAG" class="tab-content">
+      <div class="content">
+        <div id="tblAG" class="tableForm">
+          <div id="buttons">
+            <!-- <div id="selectContainer">
+              <label for="bancoSelect">Escolha o banco:</label>
+              <select id="bancoSelect" name="banco">
+                <option value="bradesco">Bradesco</option>
+                <option value="itau">Itaú</option>
+                <option value="santander">Santander</option>
+                <option value="caixa">Caixa</option>
+                <option value="bb">Banco do Brasil</option>
+              </select>
+            </div> -->
+            <button class="ag" id="btn-ag">AGÊNCIA BRADESCO</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <script src="assets/scripts/popup.js"></script>
+
+</body>
+
+</html>
