@@ -1,0 +1,271 @@
+:root {
+  /* --color-primary: #c20332; */
+  /* --color-secondary: #5c0521; */
+  --color-primary: #1c74e9;
+  --color-secondary: #0850c8;
+  --color-blur: #ededed;
+  --color-white: #fff;
+  --color-border-default: #dee3ed;
+  --color-border-blur: #8888880f;
+  --color-input-bg: #e8f0fe;
+  --color-input-tx: #888;
+  --color-data-bg: #fff;
+  --color-box-shadow: #0000001a;
+  --shadowDefault: 0 2px 6px -1px #00000029, 0 1px 4px -1px #0000000a;
+}
+
+body {
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  width: 400px;
+  overflow-x: hidden;
+  background-color: #fff;
+  color: #333;
+  border-radius: 10px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 15px;
+  padding: 20px;
+  background: var(--color-white);
+  border: solid 1px var(--color-border-default);
+  border-radius: 8px;
+  box-shadow: var(--shadowDefault);
+  overflow: hidden;
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+  padding: 10px 0;
+  background-color: var(--color-blur);
+  border: 1px solid var(--color-border-blur);
+  border-bottom: 1px solid var(--color-primary);
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 0 1px 0 var(--color-box-shadow);
+}
+
+.tab.active {
+  background-color: var(--color-primary);
+  border-bottom: 1px solid var(--color-primary);
+  color: #ffffff;
+}
+
+.tab-content {
+  display: none;
+  width: 100%;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.tabs {
+  display: flex;
+  width: 100%;
+  list-style-type: none;
+  padding: 0;
+  border-radius: 8px 8px 0 0;
+}
+
+.tableForm {
+  margin: auto;
+  /* width: 90%; */
+}
+
+.success-message,
+.error-message,
+.info-message,
+.warn-message {
+  margin: 10px;
+  padding: 4px 10px;
+  text-align: center;
+  line-height: 2;
+  border-radius: 4px;
+}
+
+.success-message {
+  background-color: #d0f8ce;
+  color: #2d652b;
+}
+
+.error-message {
+  background-color: #fde7e8;
+  color: #b31b1b;
+}
+
+.info-message {
+  background-color: #e3f2fd;
+  color: #0f3bae;
+}
+
+.warn-message {
+  background-color: #fff9c4;
+  color: #b58620;
+}
+
+input {
+  margin: 10px;
+  padding: 10px;
+  font-size: 14px;
+  color: var(--color-input-tx);
+  background-color: var(--color-input-bg);
+  border: 0px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  outline: none;
+  box-shadow: 0 2px 5px 0 var(--color-box-shadow);
+}
+
+#buttons {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  margin: 5px;
+  padding: 5px 10px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--color-primary);
+  color: #fff;
+  transition: border .28s cubic-bezier(.4, 0, .2, 1), box-shadow .28s cubic-bezier(.4, 0, .2, 1);
+  box-shadow: none;
+}
+
+button:hover {
+  background-color: var(--color-secondary);
+}
+
+.switch {
+  display: inline-block;
+  position: relative;
+  width: 36px;
+  height: 18px;
+}
+
+.switch input {
+  height: 0;
+  opacity: 0;
+  width: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-blur);
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 13px;
+  width: 13px;
+  left: 4px;
+  bottom: 3px;
+  background-color: #ffffff;
+  transition: .4s;
+}
+
+input:checked+.slider {
+  background-color: var(--color-primary);
+}
+
+input:focus+.slider {
+  box-shadow: 0 0 1px var(--color-box-shadow);
+}
+
+input:checked+.slider:before {
+  transform: translateX(16px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+#generatedData {
+  text-align: center;
+  width: 250px;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.text {
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+
+.msgStage {
+  height: 50px;
+}
+
+#warning.visible {
+  opacity: 1;
+}
+
+#warning.hidden {
+  opacity: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+.table {
+  display: table;
+  width: 87%;
+  margin: 30px 10px 0;
+  padding: 10px;
+  background: var(--color-data-bg);
+  border: solid 1px var(--color-border-default);
+  border-radius: 8px;
+  /* box-shadow: var(--shadowDefault); */
+}
+
+.row {
+  display: table-row;
+}
+
+.celll {
+  display: table-cell;
+  width: 65px;
+  padding: 5px;
+  text-align: right;
+  font-weight: 600;
+}
+
+.cellr {
+  display: table-cell;
+  padding: 5px;
+  border: 0px solid #ccc;
+}
