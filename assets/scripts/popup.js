@@ -75,6 +75,7 @@ let Popup = {
     }, 2000);
   },
   fetchText: (value) => {
+
     const generatedDataValue = value;
     fetch(`https://api.brasilaberto.com/v1/zipcode/${generatedDataValue}`)
       .then(response => response.json())
@@ -118,39 +119,7 @@ let Popup = {
     Popup.setText(response.message);
     Popup.fetchText(response.message);
     document.execCommand('copy');
-    /*chrome.storage.local.get('mask', data => {
-       tracker.sendEvent(response.type, `mask ${(data.mask ? 'on' : 'off')}`); 
-    });*/
     document.body.click();
   }
 }
 
-function copyToClipboard() {
-  var cepInfo = document.getElementById("cepInfo");
-
-  // Cria um elemento temporário para armazenar o conteúdo da div
-  var tempElement = document.createElement("textarea");
-  tempElement.value = cepInfo.innerText;
-
-  // Adiciona o elemento temporário ao corpo do documento
-  document.body.appendChild(tempElement);
-
-  // Seleciona o texto dentro do elemento temporário
-  tempElement.select();
-  tempElement.setSelectionRange(0, 99999); // Para dispositivos móveis
-
-  // Copia o texto selecionado para a área de transferência
-  document.execCommand("copy");
-
-  // Remove o elemento temporário
-  document.body.removeChild(tempElement);
-
-  // Exibe a mensagem de sucesso
-  var warning = document.getElementById("warning");
-  warning.style.display = "block";
-
-  // Esconde a mensagem após 2 segundos (opcional)
-  setTimeout(function () {
-    warning.style.display = "none";
-  }, 2000);
-}
