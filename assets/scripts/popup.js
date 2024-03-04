@@ -3,11 +3,75 @@ document.addEventListener("DOMContentLoaded", function () {
   const tabs = document.querySelectorAll(".tab");
   const tabContents = document.querySelectorAll(".tab-content");
 
+  const searchBank = document.getElementById('searchBank');
+  const bancoResults = document.getElementById('bancoResults');
+
+  searchBank.addEventListener('input', function () {
+    const searchTerm = searchBank.value.trim();
+
+    // Enviar uma mensagem para o background solicitando os resultados da busca dinâmica
+    chrome.runtime.sendMessage({ type: 'search-bancos', searchTerm }, function (response) {
+      document.getElementById('bancoResults').className = 'visible';
+      updateBancoResults(response.results);
+    });
+  });
+
+  function updateBancoResults(results) {
+    bancoResults.innerHTML = '';
+
+    results.forEach(banco => {
+      const li = document.createElement('li');
+      li.textContent = `${banco.code} - ${banco.name}`;
+      li.className = 'li-results';
+      li.addEventListener('click', function () {
+        selectBanco(banco);
+      });
+
+      bancoResults.appendChild(li);
+    });
+  }
+
+  function selectBanco(selectedBanco) {
+    const bancoSelect = document.getElementById('bancoSelect');
+    //bancoSelect.value = selectedBanco.name;
+    //bancoResults.innerHTML = selectedBanco;
+    searchBank.value = selectedBanco.name;
+    bancoResults.innerHTML = '';
+    document.getElementById('bancoResults').className = 'hidden';
+    document.getElementById('bancoInfo').className = '';
+
+    const containerElement = document.getElementById('bancoInfo');
+    containerElement.innerHTML = `
+          <div class="table">
+            <div class="row">
+                <div class="celll">Code:</div>
+                <div class="cellr">${selectedBanco.code}</div>
+            </div>
+            <div class="row">
+                <div class="celll">Nome:</div>
+                <div class="cellr">${selectedBanco.name}</div>
+            </div>
+            <div class="row">
+                <div class="celll">ISPB:</div>
+                <div class="cellr">${selectedBanco.ispb}</div>
+            </div>
+            <div class="row">
+                <div class="celll">Razão Social:</div>
+                <div class="cellr">${selectedBanco.fullName}</div>
+            </div>
+          </div>`;
+
+    // Exibe as informações do CEP
+    document.getElementById('bancoInfo').classList.add('visible');
+  }
+
+
   tabs.forEach((tab) => {
     tab.addEventListener("click", () => {
       document.getElementById('generatedData').value = '';
-      document.getElementById('warning').className = 'hidden';
-
+      /* document.getElementById('warning').className = 'hidden'; */
+      document.getElementById('copiedClipboard').className = '';
+      document.getElementById('copiedClipboard').className = 'hidden';
 
       tabs.forEach((t) => t.classList.remove("active"));
       tab.classList.add("active");
@@ -63,15 +127,17 @@ let Popup = {
   loadMaskOption: () => {
     chrome.storage.local.get('mask', data => {
       document.querySelector('#mask').checked = (data.mask ? 'checked' : '');
-      document.getElementById('warning').className = 'hidden';
+      /* document.getElementById('warning').className = 'hidden'; */
     });
   },
   setText: (value) => {
     document.getElementById('generatedData').value = value;
-    document.getElementById('warning').className = 'visible success-message';
+    /* document.getElementById('warning').className = 'visible success-message'; */
+    document.getElementById('copiedClipboard').className = 'tooltiptext';
     document.getElementById('generatedData').select();
+
     setTimeout(function () {
-      document.getElementById('warning').className = 'hidden';
+      /* document.getElementById('warning').className = 'hidden'; */
     }, 2000);
   },
   fetchText: (value) => {
