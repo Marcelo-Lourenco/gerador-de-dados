@@ -38,31 +38,31 @@ document.addEventListener("DOMContentLoaded", function () {
     searchBank.value = selectedBanco.name;
     bancoResults.innerHTML = '';
     document.getElementById('bancoResults').className = 'hidden';
-    document.getElementById('bancoInfo').className = '';
+    document.getElementById('bancoInfo').className = 'resultInfo';
 
     const containerElement = document.getElementById('bancoInfo');
     containerElement.innerHTML = `
           <div class="table">
             <div class="row">
-                <div class="celll">Code:</div>
-                <div class="cellr">${selectedBanco.code}</div>
+                <div class="cell-l">Code:</div>
+                <div class="cell-r">${selectedBanco.code}</div>
             </div>
             <div class="row">
-                <div class="celll">Nome:</div>
-                <div class="cellr">${selectedBanco.name}</div>
+                <div class="cell-l">Nome:</div>
+                <div class="cell-r">${selectedBanco.name}</div>
             </div>
             <div class="row">
-                <div class="celll">ISPB:</div>
-                <div class="cellr">${selectedBanco.ispb}</div>
+                <div class="cell-l">ISPB:</div>
+                <div class="cell-r">${selectedBanco.ispb}</div>
             </div>
             <div class="row">
-                <div class="celll">Razão Social:</div>
-                <div class="cellr">${selectedBanco.fullName}</div>
+                <div class="cell-l">Razão Social:</div>
+                <div class="cell-r">${selectedBanco.fullName}</div>
             </div>
           </div>`;
 
     // Exibe as informações do CEP
-    document.getElementById('bancoInfo').classList.add('visible');
+    document.getElementById('bancoInfo').classList.add('resultInfo visible');
   }
 
 
@@ -154,24 +154,24 @@ let Popup = {
         containerElement.innerHTML = `
           <div class="table">
             <div class="row">
-                <div class="celll">CEP:</div>
-                <div class="cellr">${result.zipcode.replace(/^(\d{5})(\d{3})$/, '$1-$2')}</div>
+                <div class="cell-l">CEP:</div>
+                <div class="cell-r">${result.zipcode.replace(/^(\d{5})(\d{3})$/, '$1-$2')}</div>
             </div>
             <div class="row">
-                <div class="celll">Logradouro:</div>
-                <div class="cellr">${result.street}</div>
+                <div class="cell-l">Logradouro:</div>
+                <div class="cell-r">${result.street}</div>
             </div>
             <div class="row">
-                <div class="celll">Bairro:</div>
-                <div class="cellr">${result.district}</div>
+                <div class="cell-l">Bairro:</div>
+                <div class="cell-r">${result.district}</div>
             </div>
             <div class="row">
-                <div class="celll">Cidade:</div>
-                <div class="cellr">${result.city}</div>
+                <div class="cell-l">Cidade:</div>
+                <div class="cell-r">${result.city}</div>
             </div>
             <div class="row">
-                <div class="celll">UF:</div>
-                <div class="cellr">${result.stateShortname}</div>
+                <div class="cell-l">UF:</div>
+                <div class="cell-r">${result.stateShortname}</div>
             </div>
           </div>`;
 

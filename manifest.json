@@ -2,7 +2,7 @@
    "manifest_version": 3,
    "name": "Gerador de Dados",
    "description": "Gerar CPF, RG, PIS, CNPJ, Inscrição Estadual, CEP e Agências Bancárias. Útil para DEVs e QAs realizarem testes de sistemas.",
-   "version": "1.1",
+   "version": "1.1.0",
    "icons": {
       "16": "assets/images/icon-16.png",
       "32": "assets/images/icon-32.png",
