@@ -1,4 +1,4 @@
-import db from './assets/db/db.js';
+import db from './assets/scripts/db.js';
 chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.local.set({
     mask: false
@@ -274,3 +274,34 @@ let AG = {
 };
 
 
+let BANCOS = {
+  consultar: function () {
+    let bancos = db.bancos;
+    return banco;
+  }
+};
+
+
+
+// Adicione esta função para filtrar os bancos com base no termo de pesquisa
+function filterBancos(searchTerm) {
+  return db.bancos.filter(banco => banco.name && banco.name.toLowerCase().includes(searchTerm));
+}
+
+// Adicione esta função para obter os resultados da busca dinâmica de bancos
+function getBancoResults(searchTerm) {
+  const filteredBancos = filterBancos(searchTerm);
+  return filteredBancos.map(banco => ({ ispb: banco.ispb, name: banco.name, code: banco.code, fullName: banco.fullName }));
+}
+
+// Adicione esta função para responder à mensagem da popup com os resultados da busca dinâmica
+function searchBancos(request, sender, sendResponse) {
+  if (request.type === 'search-bancos') {
+    const searchTerm = request.searchTerm.toLowerCase();
+    const results = getBancoResults(searchTerm);
+    sendResponse({ type: 'search-bancos-result', results });
+  }
+}
+
+// Adicione um ouvinte para a mensagem da popup que solicita a busca dinâmica de bancos
+chrome.runtime.onMessage.addListener(searchBancos);

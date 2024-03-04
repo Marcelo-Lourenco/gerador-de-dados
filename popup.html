@@ -17,9 +17,14 @@
       <li class="tab" id="tabAG">Bancos</li>
     </ul>
     <div id="msgStage" class="msgStage">
-      <div id="warning" class="success-message">Copiado para Área de Transferência</div>
     </div>
-    <input type="text" id="generatedData" readonly="readonly" />
+    <!-- <div id="msgStage" class="msgStage">
+      <div id="warning" class="success-message">Copiado para Área de Transferência</div>
+    </div> -->
+    <div class="tooltip">
+      <input type="text" id="generatedData" readonly="readonly" />
+      <span id="copiedClipboard" class="hidden">Copiado para Área de Transferência</span>
+    </div>
     <div class="flex">
 
       <label class="switch">
@@ -64,17 +69,24 @@
       <div class="content">
         <div id="tblAG" class="tableForm">
           <div id="buttons">
-            <!-- <div id="selectContainer">
-              <label for="bancoSelect">Escolha o banco:</label>
+            <button class="ag" id="btn-ag">AGÊNCIA BRADESCO</button>
+            <!-- 
               <select id="bancoSelect" name="banco">
                 <option value="bradesco">Bradesco</option>
                 <option value="itau">Itaú</option>
                 <option value="santander">Santander</option>
                 <option value="caixa">Caixa</option>
                 <option value="bb">Banco do Brasil</option>
-              </select>
-            </div> -->
-            <button class="ag" id="btn-ag">AGÊNCIA BRADESCO</button>
+              </select> 
+            -->
+          </div>
+          <div class="popup-title">
+            CONSULTA CÓDIGO DO BANCO
+          </div>
+          <div id="selectContainer" class="stage">
+            <input type="text" id="searchBank" class="searchData" placeholder="DIGITE O NOME DO BANCO">
+            <ul id="bancoResults" class="ul-results"></ul>
+            <div id="bancoInfo" class="resultInfo hidden"></div>
           </div>
         </div>
       </div>
