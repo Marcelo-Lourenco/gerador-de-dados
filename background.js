@@ -16,20 +16,24 @@ chrome.runtime.onInstalled.addListener(() => {
 
   chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'cpf-unmasked', 'title': 'CPF sem máscara' });
   chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'cpf-masked', 'title': 'CPF com máscara' });
-  chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'cpf-separator', 'type': 'separator' });
+  chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'separator01', 'type': 'separator' });
   chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'cnpj-unmasked', 'title': 'CNPJ sem máscara' });
   chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'cnpj-masked', 'title': 'CNPJ com máscara' });
-  chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'cnpj-separator', 'type': 'separator' });
+  chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'separator02', 'type': 'separator' });
   chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'rg-unmasked', 'title': 'RG sem máscara' });
   chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'rg-masked', 'title': 'RG com máscara' });
-  chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'rg-separator', 'type': 'separator' });
+  chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'separator03', 'type': 'separator' });
   chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'pis-unmasked', 'title': 'PIS sem máscara' });
   chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'pis-masked', 'title': 'PIS com máscara' });
-  chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'pis-separator', 'type': 'separator' });
+  chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'separator04', 'type': 'separator' });
   chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'ie-unmasked', 'title': 'Inscrição Estadual sem máscara' });
   chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'ie-masked', 'title': 'Inscrição Estadual com máscara' });
-  chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'ie-separator', 'type': 'separator' });
-  chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, s], 'id': 'validate-document', 'title': 'Validar CPF ou CNPJ' });
+  chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'separator05', 'type': 'separator' });
+  chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'cep-unmasked', 'title': 'CEP sem máscara' });
+  chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'cep-masked', 'title': 'CEP com máscara' });
+  chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'separator06', 'type': 'separator' });
+  chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'ag-bradesco', 'title': 'Agência Bradesco' });
+  // chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, s], 'id': 'validate-document', 'title': 'Validar CPF ou CNPJ' });
 });
 
 chrome.contextMenus.onClicked.addListener((info, tabs) => {
