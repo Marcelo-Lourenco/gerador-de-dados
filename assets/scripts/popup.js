@@ -1,5 +1,6 @@
 
 document.addEventListener("DOMContentLoaded", function () {
+
   const tabs = document.querySelectorAll(".tab");
   const tabContents = document.querySelectorAll(".tab-content");
 
@@ -44,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
     containerElement.innerHTML = `
           <div class="table">
             <div class="row">
-                <div class="cell-l">Code:</div>
+                <div class="cell-l">Código:</div>
                 <div class="cell-r">${selectedBanco.code}</div>
             </div>
             <div class="row">

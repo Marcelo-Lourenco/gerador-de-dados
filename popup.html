@@ -10,34 +10,36 @@
 
 <body>
   <div class="container">
+
     <ul class="tabs">
       <li class="tab active" id="tabPF">PF</li>
       <li class="tab" id="tabPJ">PJ</li>
       <li class="tab" id="tabCEP">CEP</li>
       <li class="tab" id="tabAG">Bancos</li>
     </ul>
+
     <div id="msgStage" class="msgStage">
+      <!-- <div id="warning" class="success-message">Copiado para Área de Transferência</div> -->
     </div>
-    <!-- <div id="msgStage" class="msgStage">
-      <div id="warning" class="success-message">Copiado para Área de Transferência</div>
-    </div> -->
+
     <div class="tooltip">
       <input type="text" id="generatedData" readonly="readonly" />
       <span id="copiedClipboard" class="hidden">Copiado para Área de Transferência</span>
     </div>
-    <div class="flex">
 
+    <div class="flex">
       <label class="switch">
         <input type="checkbox" id="mask">
         <span class="info slider round" for="mask"></span>
       </label>
       <label class="text" for="mask">Máscara</label>
-
     </div>
+
     <div id="tabContentPF" class="tab-content active">
       <div class="content">
         <div id="tblPF" class="tableForm">
-          <div id="buttons">
+          <!-- <div id="buttons"> -->
+          <div class="btnGroup" id="btnGrpCpf">
             <button class="cpf" id="btn-cpf">CPF</button>
             <button class="rg" id="btn-rg">RG</button>
             <button class="pis" id="btn-pis">PIS</button>
@@ -45,33 +47,41 @@
         </div>
       </div>
     </div>
+
     <div id="tabContentPJ" class="tab-content">
       <div class="content">
         <div id="tblPJ" class="tableForm">
-          <div id="buttons">
+          <!-- <div id="buttons"> -->
+          <div class="btnGroup" id="btnGrpCnpj">
             <button class="cnpj" id="btn-cnpj">CNPJ</button>
             <button class="ie" id="btn-ie">IE</button>
           </div>
         </div>
       </div>
     </div>
+
     <div id="tabContentCEP" class="tab-content">
       <div class="content">
         <div id="tblCEP" class="tableForm">
-          <div id="buttons">
+          <!-- <div id="buttons"> -->
+          <div class="btnGroup" id="btnGrpCep">
             <button class="cep" id="btn-cep">CEP</button>
           </div>
           <div id="cepInfo" class="resultInfo hidden"></div>
         </div>
       </div>
     </div>
+
     <div id="tabContentAG" class="tab-content">
       <div class="content">
         <div id="tblAG" class="tableForm">
-          <div id="buttons">
+
+          <!-- <div id="buttons"> -->
+          <div class="btnGroup" id="btnGrpBanco">
             <button class="ag" id="btn-ag">AGÊNCIA BRADESCO</button>
             <!-- 
               <select id="bancoSelect" name="banco">
+                <option value="">Selecionar</option>
                 <option value="bradesco">Bradesco</option>
                 <option value="itau">Itaú</option>
                 <option value="santander">Santander</option>
@@ -80,6 +90,7 @@
               </select> 
             -->
           </div>
+
           <div class="popup-title">
             CONSULTA CÓDIGO DO BANCO
           </div>
@@ -92,8 +103,33 @@
       </div>
     </div>
 
-
   </div>
+
+  <div class="footer">
+    <a href="https://chromewebstore.google.com/detail/ipfihnddjaepajgdamecijfdefikdgam/reviews/my-review"
+      target="_blank">
+      <div role="img" class="stars-container tooltip">
+        <div class="stars-block">
+          <div class="stars-outline">
+            <div class="svg-stars svg-star-outline"></div>
+            <div class="svg-stars svg-star-outline"></div>
+            <div class="svg-stars svg-star-outline"></div>
+            <div class="svg-stars svg-star-outline"></div>
+            <div class="svg-stars svg-star-outline"></div>
+          </div>
+          <div class="stars-full" style="width: 91%;">
+            <div class="svg-stars svg-star"></div>
+            <div class="svg-stars svg-star"></div>
+            <div class="svg-stars svg-star"></div>
+            <div class="svg-stars svg-star"></div>
+            <div class="svg-stars svg-star"></div>
+          </div>
+        </div>
+        <span id="avaliar" class="tooltiptext hidden">Avaliar</span>
+      </div>
+    </a>
+  </div>
+
   <script src="assets/scripts/popup.js"></script>
 
 </body>
