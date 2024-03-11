@@ -52,8 +52,8 @@ O uso dos dados gerados é de responsabilidade exclusiva do usuário.
 
 ### Validador
 
-- [X] CPF
-- [X] CNPJ
+- [ ] CPF
+- [ ] CNPJ
 
 ### Consulta
 
