@@ -32,6 +32,9 @@ chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'cep-unmasked', 'title': 'CEP sem máscara' });
   chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'cep-masked', 'title': 'CEP com máscara' });
   chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'separator06', 'type': 'separator' });
+  chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'cnh-unmasked', 'title': 'CNH sem máscara' });
+  chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'cnh-masked', 'title': 'CNH com máscara' });
+  chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'separator07', 'type': 'separator' });
   chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'ag-bradesco', 'title': 'Agência Bradesco' });
   // chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, s], 'id': 'validate-document', 'title': 'Validar CPF ou CNPJ' });
 });
@@ -55,6 +58,12 @@ chrome.contextMenus.onClicked.addListener((info, tabs) => {
       break;
     case 'rg-unmasked':
       chrome.tabs.sendMessage(tabs.id, { tag: 'showDocument', message: RG.gerar(false) });
+      break;
+    case 'cnh-masked':
+      chrome.tabs.sendMessage(tabs.id, { tag: 'showDocument', message: CNH.gerar(true) });
+      break;
+    case 'cnh-unmasked':
+      chrome.tabs.sendMessage(tabs.id, { tag: 'showDocument', message: CNH.gerar(false) });
       break;
     case 'pis-masked':
       chrome.tabs.sendMessage(tabs.id, { tag: 'showDocument', message: PIS.gerar(true) });
@@ -91,6 +100,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       sendResponse({ type: 'CNPJ', message: CNPJ.gerar(data.mask) });
     } else if (request == 'generate-rg') {
       sendResponse({ type: 'RG', message: RG.gerar(data.mask) });
+    } else if (request == 'generate-cnh') {
+      sendResponse({ type: 'CNH', message: CNH.gerar(data.mask) });
     } else if (request == 'generate-pis') {
       sendResponse({ type: 'PIS', message: PIS.gerar(data.mask) });
     } else if (request == 'generate-ie') {
@@ -216,6 +227,51 @@ let RG = {
   }
 }
 
+let CNH = {
+  gerar: function (mascarar) {
+    let cnhNum = String(Math.floor(Math.random() * 900000000) + 100000000);
+    let cnhDv = CNH.calcDV(cnhNum);
+    return (mascarar) ? `${cnhNum}-${cnhDv}` : `${cnhNum}${cnhDv}`;
+  },
+  calcDV: function (cnhNum) {
+    let nM1 = 9,
+      nM2 = 1,
+      nDV1 = 0,
+      nDV2 = 0,
+      lMaior = false;
+
+    for (let i = 0; i < 9; i++) {
+      let nVL = parseInt(cnhNum.charAt(i), 10);
+      nDV1 += nVL * nM1;
+      nDV2 += nVL * nM2;
+      nM1--;
+      nM2++;
+    }
+
+    nDV1 = nDV1 % 11;
+    if (nDV1 > 9) {
+      nDV1 = 0;
+      lMaior = true;
+    }
+
+    nDV2 = nDV2 % 11;
+    if (lMaior) {
+      if (nDV2 - 2 < 0) {
+        nDV2 += 9;
+      } else if (nDV2 - 2 >= 0) {
+        nDV2 -= 2;
+      }
+    }
+
+    if (nDV2 > 9) {
+      nDV2 = 0;
+    }
+
+    return String.fromCharCode(48 + nDV1) + String.fromCharCode(48 + nDV2);
+  }
+};
+
+
 let PIS = {
   gerar: function (mascarar) {
     const peso = [3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
@@ -249,6 +305,7 @@ let IE = {
     return (documento.length === 6 && !isNaN(documento));
   }
 };
+
 
 let CEP = {
   gerar: function (mascarar) {

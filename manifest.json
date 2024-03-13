@@ -4,13 +4,14 @@
    "description": "Gerar CPF, RG, PIS, CNPJ, Inscrição Estadual, CEP e Agências Bancárias. Útil para DEVs e QAs realizarem testes de sistemas.",
    "version": "1.1.0",
    "icons": {
-      "16": "assets/images/icon-16.png",
-      "32": "assets/images/icon-32.png",
-      "48": "assets/images/icon-48.png",
-      "128": "assets/images/icon-128.png"
+      "16": "assets/images/icons/icon-16.png",
+      "32": "assets/images/icons/icon-32.png",
+      "48": "assets/images/icons/icon-48.png",
+      "64": "assets/images/icons/icon-64.png",
+      "128": "assets/images/icons/icon-128.png"
    },
    "action": {
-      "default_icon": "assets/images/icon-32.png",
+      "default_icon": "assets/images/icons/icon-32.png",
       "default_popup": "popup.html",
       "default_title": "Gerador de Dados"
    },

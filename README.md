@@ -18,7 +18,7 @@ O uso dos dados gerados é de responsabilidade exclusiva do usuário.
 - [X] CPF
 - [X] RG
 - [X] PIS
-- [ ] CNH
+- [X] CNH
 - [ ] Título de Eleitor
 - [ ] Nome
 - [ ] E-mail
