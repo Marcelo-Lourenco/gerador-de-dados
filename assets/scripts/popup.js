@@ -1,8 +1,6 @@
+import enderecos from './db-ceps.js';
 
 document.addEventListener("DOMContentLoaded", function () {
-
-
-
 
   const tabs = document.querySelectorAll(".tab");
   const tabContents = document.querySelectorAll(".tab-content");
@@ -148,55 +146,51 @@ let Popup = {
     }, 2000);
   },
 
-  /*
-  fetchText: (value) => {
+  searchCEP: (generatedDataValue) => {
+    // Procurar o endereço correspondente ao CEP gerado
+    const cepMasked = generatedDataValue.replace(/^(\d{5})(\d{3})$/, '$1-$2');
+    const endereco = enderecos.find(item => item.cep === cepMasked);
 
-    const generatedDataValue = value;
-    fetch(`https://api.brasilaberto.com/v1/zipcode/${generatedDataValue}`)
-      .then(response => response.json())
-      .then(data => {
-        // Aqui você pode fazer o que quiser com os dados da API
-
-        let result = data.result;
-
-        const containerElement = document.getElementById('cepInfo');
-        containerElement.innerHTML = `
+    if (endereco) {
+      const containerElement = document.getElementById('cepInfo');
+      containerElement.innerHTML = `
           <div class="table">
             <div class="row">
                 <div class="cell-l">CEP:</div>
-                <div class="cell-r">${result.zipcode.replace(/^(\d{5})(\d{3})$/, '$1-$2')}</div>
+                <div class="cell-r">${endereco.cep.replace(/^(\d{5})(\d{3})$/, '$1-$2')}</div>
             </div>
             <div class="row">
                 <div class="cell-l">Logradouro:</div>
-                <div class="cell-r">${result.street}</div>
+                <div class="cell-r">${endereco.logradouro}</div>
             </div>
             <div class="row">
                 <div class="cell-l">Bairro:</div>
-                <div class="cell-r">${result.district}</div>
+                <div class="cell-r">${endereco.bairro}</div>
             </div>
             <div class="row">
                 <div class="cell-l">Cidade:</div>
-                <div class="cell-r">${result.city}</div>
+                <div class="cell-r">${endereco.localidade}</div>
             </div>
             <div class="row">
                 <div class="cell-l">UF:</div>
-                <div class="cell-r">${result.stateShortname}</div>
+                <div class="cell-r">${endereco.uf}</div>
             </div>
           </div>`;
 
-        // Exibe as informações do CEP
-        document.getElementById('cepInfo').classList.add('visible');
-      })
-      .catch(error => console.error('Erro ao chamar a API BrasilAberto', error));
+      // Exibe as informações do CEP
+      document.getElementById('cepInfo').classList.add('visible');
+    } else {
+      //console.error(`Endereço não encontrado para o CEP ${generatedDataValue}`);
+      // Adicione aqui o tratamento para o caso em que o endereço não é encontrado.
+    }
 
-  }, 
-  */
+  },
 
   generateDocumentResponse: (response) => {
     Popup.setText(response.message);
-    /* Popup.fetchText(response.message); */
+    // TODO está chamando a função  searchCEP em todos os botões
+    Popup.searchCEP(response.message);
     document.execCommand('copy');
     document.body.click();
   }
 }
-

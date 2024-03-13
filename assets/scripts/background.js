@@ -1,4 +1,4 @@
-import db from './assets/scripts/db.js';
+import db from './db.js';
 chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.local.set({
     mask: false

@@ -1,8 +1,8 @@
 {
    "manifest_version": 3,
    "name": "Gerador de Dados",
-   "description": "Gerar CPF, RG, PIS, CNPJ, Inscrição Estadual, CEP e Agências Bancárias. Útil para DEVs e QAs realizarem testes de sistemas.",
-   "version": "1.1.0",
+   "description": "Gerador de CPF, RG, CNH, PIS, CNPJ, Inscrição Estadual, CEP e Agências Bancárias. Consulta Código de Banco. Útil para DEVs e QAs realizarem testes de sistemas.",
+   "version": "1.1.1",
    "icons": {
       "16": "assets/images/icons/icon-16.png",
       "32": "assets/images/icons/icon-32.png",
@@ -16,7 +16,7 @@
       "default_title": "Gerador de Dados"
    },
    "background": {
-      "service_worker": "background.js",
+      "service_worker": "./assets/scripts/background.js",
       "type": "module"
    },
    "content_security_policy": {
