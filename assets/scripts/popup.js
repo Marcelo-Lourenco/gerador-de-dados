@@ -1,6 +1,9 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 
+
+
+
   const tabs = document.querySelectorAll(".tab");
   const tabContents = document.querySelectorAll(".tab-content");
 
@@ -101,6 +104,9 @@ document.addEventListener('DOMContentLoaded', function () {
   document.querySelector('button.rg').addEventListener('click', function () {
     chrome.runtime.sendMessage('generate-rg', Popup.generateDocumentResponse);
   });
+  document.querySelector('button.cnh').addEventListener('click', function () {
+    chrome.runtime.sendMessage('generate-cnh', Popup.generateDocumentResponse);
+  });
   document.querySelector('button.pis').addEventListener('click', function () {
     chrome.runtime.sendMessage('generate-pis', Popup.generateDocumentResponse);
   });
@@ -141,6 +147,8 @@ let Popup = {
       /* document.getElementById('warning').className = 'hidden'; */
     }, 2000);
   },
+
+  /*
   fetchText: (value) => {
 
     const generatedDataValue = value;
@@ -181,10 +189,12 @@ let Popup = {
       })
       .catch(error => console.error('Erro ao chamar a API BrasilAberto', error));
 
-  },
+  }, 
+  */
+
   generateDocumentResponse: (response) => {
     Popup.setText(response.message);
-    Popup.fetchText(response.message);
+    /* Popup.fetchText(response.message); */
     document.execCommand('copy');
     document.body.click();
   }
