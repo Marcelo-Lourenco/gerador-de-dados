@@ -1,8 +1,11 @@
 # Gerador de Dados Fictícios- Extensão Chrome
 
-Gerador de CPF, RG, CNH, PIS, CNPJ, Inscrição Estadual, CEP e Agências Bancárias. Consulta Código de Banco.
+Gerador de CPF, RG, CNH, PIS, CNPJ, CEP, Nome, Nickname, E-mail, Inscrição Estadual e Agências Bancárias. Consulta Código de Banco.
+
 Útil para DEVs e QAs realizarem testes de sistemas.
-Gera na extensão ou direto no campo (input).
+
+Gera na extensão ou direto no campo (input) das páginas web.
+
 O uso dos dados gerados é de responsabilidade exclusiva do usuário.
 
 ## Demo
@@ -20,8 +23,9 @@ O uso dos dados gerados é de responsabilidade exclusiva do usuário.
 - [X] PIS
 - [X] CNH
 - [ ] Título de Eleitor
-- [ ] Nome
-- [ ] E-mail
+- [X] Nome
+- [X] Nickname
+- [X] E-mail
 - [ ] Pessoa
 
 #### PJ
