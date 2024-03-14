@@ -117,6 +117,19 @@ document.addEventListener('DOMContentLoaded', function () {
   document.querySelector('button.ag').addEventListener('click', function () {
     chrome.runtime.sendMessage('generate-ag', Popup.generateDocumentResponse);
   });
+  document.querySelector('button.nome-masculino').addEventListener('click', function () {
+    chrome.runtime.sendMessage('generate-nome-masculino', Popup.generateDocumentResponse);
+  });
+  document.querySelector('button.nome-feminino').addEventListener('click', function () {
+    chrome.runtime.sendMessage('generate-nome-feminino', Popup.generateDocumentResponse);
+  });
+  document.querySelector('button.email').addEventListener('click', function () {
+    chrome.runtime.sendMessage('generate-email', Popup.generateDocumentResponse);
+  });
+  document.querySelector('button.nickname').addEventListener('click', function () {
+    chrome.runtime.sendMessage('generate-nickname', Popup.generateDocumentResponse);
+  });
+
 
   document.querySelector('input#mask').addEventListener('change', function () {
     let maskSelected = document.querySelector('#mask').checked;

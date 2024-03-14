@@ -36,6 +36,11 @@ chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'cnh-masked', 'title': 'CNH com máscara' });
   chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'separator07', 'type': 'separator' });
   chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'ag-bradesco', 'title': 'Agência Bradesco' });
+  chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'separator08', 'type': 'separator' });
+  chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'nome-masculino', 'title': 'Nome Masculino' });
+  chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'nome-feminino', 'title': 'Nome Feminino' })
+  chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'email', 'title': 'E-mail' })
+  chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, e], 'id': 'nickname', 'title': 'Nickname' })
   // chrome.contextMenus.create({ 'parentId': pId, 'contexts': [a, s], 'id': 'validate-document', 'title': 'Validar CPF ou CNPJ' });
 });
 
@@ -86,6 +91,18 @@ chrome.contextMenus.onClicked.addListener((info, tabs) => {
     case 'ag-bradesco':
       chrome.tabs.sendMessage(tabs.id, { tag: 'showDocument', message: AG.gerar(false) });
       break;
+    case 'nome-masculino':
+      chrome.tabs.sendMessage(tabs.id, { tag: 'showDocument', message: NOME.gerarMasculino(false) });
+      break;
+    case 'nome-feminino':
+      chrome.tabs.sendMessage(tabs.id, { tag: 'showDocument', message: NOME.gerarFeminino(false) });
+      break;
+    case 'email':
+      chrome.tabs.sendMessage(tabs.id, { tag: 'showDocument', message: EMAIL.gerar(false) });
+      break;
+    case 'nickname':
+      chrome.tabs.sendMessage(tabs.id, { tag: 'showDocument', message: NICKNAME.gerar(false) });
+      break;
     case 'validate-document':
       validarDocumento(info, tabs);
       break;
@@ -110,6 +127,14 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       sendResponse({ type: 'CEP', message: CEP.gerar(data.mask) });
     } else if (request == 'generate-ag') {
       sendResponse({ type: 'AG', message: AG.gerar(data.mask) });
+    } else if (request == 'generate-nome-masculino') {
+      sendResponse({ type: 'NOME', message: NOME.gerarMasculino(data.mask) });
+    } else if (request == 'generate-nome-feminino') {
+      sendResponse({ type: 'NOME', message: NOME.gerarFeminino(data.mask) });
+    } else if (request == 'generate-email') {
+      sendResponse({ type: 'EMAIL', message: EMAIL.gerar(data.mask) });
+    } else if (request == 'generate-nickname') {
+      sendResponse({ type: 'NICKNAME', message: NICKNAME.gerar(data.mask) });
     }
   });
   return true;
@@ -331,6 +356,53 @@ let AG = {
     let randomIndex = Math.floor(Math.random() * agBradesco.length);
     let ag = agBradesco[randomIndex];
     return ag;
+  }
+};
+
+let NOME = {
+  gerarMasculino: function () {
+    let nomesMasculinos = db.nomesMasculinos;
+    let nomesDoMeio = db.nomesDoMeio;
+    let sobrenomes = db.sobrenomes;
+
+    let nome = nomesMasculinos[Math.floor(Math.random() * nomesMasculinos.length)];
+    let nomeMeio = nomesDoMeio[Math.floor(Math.random() * nomesDoMeio.length)];
+    let sobrenome = sobrenomes[Math.floor(Math.random() * sobrenomes.length)];
+
+    return `${nome} ${nomeMeio} ${sobrenome}`;
+  },
+  gerarFeminino: function () {
+    let nomesFemininos = db.nomesFemininos;
+    let nomesDoMeio = db.nomesDoMeio;
+    let sobrenomes = db.sobrenomes;
+
+    let nome = nomesFemininos[Math.floor(Math.random() * nomesFemininos.length)];
+    let nomeMeio = nomesDoMeio[Math.floor(Math.random() * nomesDoMeio.length)];
+    let sobrenome = sobrenomes[Math.floor(Math.random() * sobrenomes.length)];
+
+    return `${nome} ${nomeMeio} ${sobrenome}`;
+  }
+};
+
+let EMAIL = {
+  gerar: function () {
+    let nicknames = db.nicknames;
+    let provedoresEmail = db.provedoresEmail;
+
+    let nickname = nicknames[Math.floor(Math.random() * nicknames.length)].toLowerCase();
+    let provedorEmail = provedoresEmail[Math.floor(Math.random() * provedoresEmail.length)];
+
+    return `${nickname}${provedorEmail}`;
+  }
+};
+
+let NICKNAME = {
+  gerar: function () {
+    let nicknames = db.nicknames;
+
+    let nickname = nicknames[Math.floor(Math.random() * nicknames.length)];
+
+    return `${nickname}`;
   }
 };
 
