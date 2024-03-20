@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador de Dados Fictício</title>
+  <!-- <link href="./assets/styles/popup.css" rel="stylesheet"> -->
+  <link href="./assets/styles/page.css" rel="stylesheet">
+
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div>
+      <ul class="tabs">
+        <li class="tab active" id="tabPF">PF</li>
+        <li class="tab" id="tabPJ">PJ</li>
+        <li class="tab" id="tabCEP">CEP</li>
+        <li class="tab" id="tabAG">Bancos</li>
+      </ul>
+    </div>
+    <div id="tabContentPF" class="tab-content active">
+      <div class="content">
+        <div id="tblPF" class="tableFormConfig">
+          <div class="input-container">
+            <select id="fldSex">
+              <option value="" selected>Selecione</option>
+              <option value="f">Feminino</option>
+              <option value="m">Masculino</option>
+            </select>
+            <label for="fldSex" class="fld-label">Sexo</label>
+          </div>
+          <div class="input-container">
+            <select id="fldState" class="">
+              <option value="" selected>Selecione</option>
+              <option value="AC">AC</option>
+              <option value="AL">AL</option>
+              <option value="AM">AM</option>
+              <option value="AP">AP</option>
+              <option value="BA">BA</option>
+              <option value="CE">CE</option>
+              <option value="DF">DF</option>
+              <option value="ES">ES</option>
+              <option value="GO">GO</option>
+              <option value="MA">MA</option>
+              <option value="MG">MG</option>
+              <option value="MS">MS</option>
+              <option value="MT">MT</option>
+              <option value="PA">PA</option>
+              <option value="PB">PB</option>
+              <option value="PE">PE</option>
+              <option value="PI">PI</option>
+              <option value="PR">PR</option>
+              <option value="RJ">RJ</option>
+              <option value="RN">RN</option>
+              <option value="RO">RO</option>
+              <option value="RR">RR</option>
+              <option value="RS">RS</option>
+              <option value="SC">SC</option>
+              <option value="SE">SE</option>
+              <option value="SP">SP</option>
+              <option value="TO">TO</option>
+            </select>
+            <label for="fldState" class="fld-label">Estado</label>
+          </div>
+          <div class="input-container">
+            <label class="switch">
+              <input type="checkbox" id="fldMask" checked>
+              <span class="slider round"></span>
+            </label>
+            <span class="switch-label">Márcara</span>
+          </div>
+          <div class="input-container">
+            <button type="button" id="generatorPeople" class="">Gerar Pessoa</button>
+          </div>
+        </div>
+        <hr>
+        <div class="input-container">
+          <input type="text" id="fldName" placeholder="">
+          <label for="fldName" class="fld-label">Nome</label>
+        </div>
+        <div class="input-container">
+          <input type="text" id="fldCpf" placeholder="">
+          <label for="fldCpf" class="fld-label">CPF</label>
+        </div>
+        <div class="input-container">
+          <input type="text" id="fldRg" placeholder="">
+          <label for="fldRg" class="fld-label">RG</label>
+        </div>
+        <div class="input-container">
+          <input type="text" id="fldCep" placeholder="">
+          <label for="fldCep" class="fld-label">CEP</label>
+        </div>
+        <!-- <div class="input-container">
+          <input type="textarea" id="fldEndereco" placeholder="">
+          <label for="fldEndereco" class="fld-label">Endereço</label>
+        </div> -->
+        <div class="input-container">
+          <input type="text" id="fldLogradouro" placeholder="">
+          <label for="fldLogradouro" class="fld-label">Logradouro</label>
+        </div>
+        <!-- <div class="input-container">
+          <input type="text" id="fldComplemento" placeholder="">
+          <label for="fldComplemento" class="fld-label">Complemento</label>
+        </div> -->
+        <div class="input-container">
+          <input type="text" id="fldBairro" placeholder="">
+          <label for="fldBairro" class="fld-label">Bairro</label>
+        </div>
+        <div class="input-container">
+          <input type="text" id="fldLocalidade" placeholder="">
+          <label for="fldLocalidade" class="fld-label">Localidade</label>
+        </div>
+        <div class="input-container">
+          <input type="text" id="fldUf" placeholder="">
+          <label for="fldUf" class="fld-label">UF</label>
+        </div>
+
+      </div>
+    </div>
+    <div id="tabContentPJ" class="tab-content">
+      <div class="content">
+        <div id="tblPJ" class="tableForm">
+          teste
+        </div>
+      </div>
+    </div>
+    <div id="tabContentCEP" class="tab-content">
+      <div class="content">
+        <div id="tblCEP" class="tableForm">
+          teste
+        </div>
+      </div>
+    </div>
+    <div id="tabContentAG" class="tab-content">
+      <div class="content">
+        <div id="tblAG" class="tableForm">
+          teste
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="./assets/scripts/page.js"></script>
+
+</body>
+
+</html>
