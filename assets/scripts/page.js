@@ -87,8 +87,16 @@ function getPeople(copyField = false) {
   let getZipCode = getAddressFull[0];
   let getAddress = getAddressFull[1];
   let getName = gen.name.generate(data.sex);
+  let getCpf = gen.cpf.generate(data.mask, getAddress.uf);
+  let getRg = gen.rg.generate(data.mask, getAddress.uf);
+  let getCnh = gen.cnh.generate();
+  let getPis = gen.pis.generate(data.mask);
 
   document.getElementById('fldName').value = getName;
+  document.getElementById('fldCpf').value = getCpf;
+  document.getElementById('fldRg').value = getRg;
+  document.getElementById('fldCnh').value = getCnh;
+  document.getElementById('fldPis').value = getPis;
 
   document.getElementById('fldCep').value = getZipCode;
 

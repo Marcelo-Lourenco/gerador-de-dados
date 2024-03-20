@@ -16,38 +16,32 @@
   --color-data-bg: #fff;
   --color-box-shadow: #0000001a;
   --shadowDefault: 0 2px 6px -1px #00000029, 0 1px 4px -1px #0000000a;
-
-
 }
 
 body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  /* height: 100vh; */
   font-family: "Google Sans", Roboto, Arial, sans-serif;
   background-color: var(--color-background-light);
   color: var(--color-text-default);
 }
 
 .container {
-
   width: 90%;
   margin: 10px;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  /*  display: flex; */
-  /*  align-items: center; */
-  /*  justify-content: center; */
-  /*  margin: 15px; */
-  /*  padding: 20px; */
   background: var(--color-white);
   border: solid 1px var(--color-border-default);
   border-radius: 8px;
   box-shadow: var(--shadowDefault);
+}
 
-  /*  max-width: 1200px; */
+.menu {
+  border-bottom: 1px solid var(--color-primary);
 }
 
 .tab {
@@ -59,14 +53,15 @@ body {
   padding: 10px 0;
   background-color: var(--color-blur);
   border: 1px solid var(--color-border-blur);
-  border-bottom: 1px solid var(--color-primary);
+  /* border-bottom: 1px solid var(--color-primary); */
   border-radius: 8px 8px 0 0;
   box-shadow: 0 0 1px 0 var(--color-box-shadow);
+  max-width: 200px;
 }
 
 .tab.active {
   background-color: var(--color-primary);
-  border-bottom: 1px solid var(--color-primary);
+  /*  border-bottom: 1px solid var(--color-primary); */
   color: #ffffff;
 }
 
@@ -85,6 +80,7 @@ body {
   list-style-type: none;
   padding: 0;
   border-radius: 8px 8px 0 0;
+  margin-bottom: 0px;
 }
 
 .tableForm {
@@ -106,8 +102,8 @@ body {
 .content {
   margin-top: 30px;
   /* background-color: #fbfbfbfb; */
-  border: 1px solid #ccc;
-  padding: 10px;
+  border: 1px solid var(--color-input-border);
+  padding: 10px 30px;
   border-radius: 8px;
 }
 
@@ -149,7 +145,7 @@ body {
 
 input {
   width: 300px;
-  padding: 15px 10px;
+  padding: 10px 15px;
   font-size: 16px;
   color: var(--color-input-text);
   border: 1px solid var(--color-input-border);
@@ -159,7 +155,7 @@ input {
 }
 
 select {
-  padding: 15px 15px;
+  padding: 10px 15px;
   font-size: 16px;
   color: var(--color-input-text);
   border: 1px solid var(--color-input-border);
@@ -197,7 +193,7 @@ input:not(:placeholder-shown)+label {
 
 button {
   margin: 5px;
-  padding: 15px 10px;
+  padding: 10px 20px;
   font-size: 14px;
   font-weight: 500;
   text-align: center;
@@ -240,6 +236,8 @@ button:hover {
   transition: .4s;
   /* border-radius: 24px; */
 }
+
+
 
 .slider:before {
   position: absolute;
