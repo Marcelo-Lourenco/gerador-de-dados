@@ -1,6 +1,23 @@
 import gen from './generator.js';
 
 
+document.addEventListener("DOMContentLoaded", function () {
+  var copyIcons = document.querySelectorAll(".icon-copy");
+  var tooltip = document.querySelector(".tooltip");
+  copyIcons.forEach(function (copyIcon) {
+    copyIcon.addEventListener("click", function () {
+      var inputField = this.parentElement.querySelector('input[type="text"]');
+      inputField.select();
+      document.execCommand("copy");
+      window.getSelection().removeAllRanges();
+      tooltip.style.display = "inline-block";
+      setTimeout(function () {
+        tooltip.style.display = "none";
+      }, 2000);
+    });
+  });
+});
+
 const inputFields = document.querySelectorAll('input');
 inputFields.forEach(inputField => {
   inputField.addEventListener('focus', function () {

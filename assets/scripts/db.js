@@ -2174,10 +2174,7 @@ const data = {
     'Ace', 'Alpha', 'Angel', 'Archer', 'Arrow', 'Astral', 'Athena', 'Aurora', 'Bard', 'Blade', 'Blaze', 'Bolt', 'Breeze', 'Captain', 'Chaos', 'Crimson', 'Crystal', 'Dagger', 'Dawn', 'Dragon', 'Dreamer', 'Echo', 'Ember', 'Falcon', 'Flame', 'Flash', 'Frost', 'Galaxy', 'Ghost', 'Glimmer', 'Harmony', 'Hawk', 'Infinity', 'Iris', 'Jade', 'Jester', 'Jet', 'Journey', 'Luna', 'Magic', 'Mystic', 'Ninja', 'Nova', 'Ocean', 'Oracle', 'Orbit', 'Phoenix', 'Pirate', 'Pixel', 'Power', 'Prince', 'Princess', 'Raven', 'Rebel', 'Rogue', 'Rose', 'Sapphire', 'Serenity', 'Shadow', 'Silver', 'Sky', 'Snow', 'Sonic', 'Spectre', 'Spirit', 'Star', 'Storm', 'Sun', 'Sword', 'Tiger', 'Titan', 'Twilight', 'Vortex', 'Warrior', 'Whisper', 'Wildfire', 'Wing', 'Wizard', 'Wolf', 'Zephyr', 'Zen', 'Zero'
   ],
   'provedoresEmail': [
-    '@aol.com.br', '@bol.com.br', '@globo.com', '@gmail.com', '@gmx.com', '@hotmail.com', '@icloud.com', '@ig.com', '@ig.com.br', '@itelefonica.com.br', '@live.com', '@mail.com', '@oi.com.br', '@outlook.com', '@protonmail.com', '@r7.com', '@superig.com.br', '@terra.com.br', '@uol.com', '@yahoo.com', '@yahoo.com.br', '@yandex.com', '@yandex.ru', '@zipmail.com.br', '@zoho.com'
+    '@aol.com.br', '@bol.com.br', '@gmail.com', '@gmx.com', '@hotmail.com', '@icloud.com', '@ig.com', '@ig.com.br', '@itelefonica.com.br', '@live.com', '@mail.com', '@oi.com.br', '@outlook.com', '@protonmail.com', '@superig.com.br', '@terra.com.br', '@uol.com', '@yahoo.com', '@yahoo.com.br', '@yandex.com', '@zipmail.com.br', '@zoho.com'
   ]
-
-
-
 }
 export default data;
