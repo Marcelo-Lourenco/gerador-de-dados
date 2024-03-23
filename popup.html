@@ -10,7 +10,6 @@
 
 <body>
   <div class="container">
-
     <ul class="tabs">
       <li class="tab active" id="tabPF">PF</li>
       <li class="tab" id="tabPJ">PJ</li>
@@ -35,7 +34,7 @@
       <label class="text" for="mask">Máscara</label>
     </div>
 
-    <div id="tabContentPF" class="tab-content active">
+    <div id="tabContentPF" class="tab-content">
       <div class="content">
         <div id="tblPF" class="tableForm">
           <div class="btnGroup" id="btnGrpDocPF">
@@ -43,46 +42,41 @@
             <button class="rg" id="btn-rg">RG</button>
             <button class="cnh" id="btn-cnh">CNH</button>
             <button class="pis" id="btn-pis">PIS</button>
-            <button class="email" id="btn-email">E-mail</button>
-          </div>
-          <div class="btnGroup" id="btnGrpNomePf">
-            <button class="nome-masculino" id="btn-nome-masculino">Nome Masculino</button>
-            <button class="nome-feminino" id="btn-nome-feminino">Nome Feminino</button>
-            <button class="nickname" id="btn-nickname">Nickname</button>
+            <button class="highlight-button" id="openPage">PESSOA</button>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div id="tabContentPJ" class="tab-content">
-    <div class="content">
-      <div id="tblPJ" class="tableForm">
-        <div class="btnGroup" id="btnGrpDocCnpj">
-          <button class="cnpj" id="btn-cnpj">CNPJ</button>
-          <button class="ie" id="btn-ie">IE</button>
+
+    <div id="tabContentPJ" class="tab-content">
+      <div class="content">
+        <div id="tblPJ" class="tableForm">
+          <div class="btnGroup" id="btnGrpDocCnpj">
+            <button class="cnpj" id="btn-cnpj">CNPJ</button>
+            <button class="ie" id="btn-ie">IE</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div id="tabContentCEP" class="tab-content">
-    <div class="content">
-      <div id="tblCEP" class="tableForm">
-        <div class="btnGroup" id="btnGrpCep">
-          <button class="cep" id="btn-cep">CEP</button>
+    <div id="tabContentCEP" class="tab-content">
+      <div class="content">
+        <div id="tblCEP" class="tableForm">
+          <div class="btnGroup" id="btnGrpCep">
+            <button class="cep" id="btn-cep">CEP</button>
+          </div>
+          <div id="cepInfo" class="resultInfo hidden"></div>
         </div>
-        <div id="cepInfo" class="resultInfo hidden"></div>
       </div>
     </div>
-  </div>
 
-  <div id="tabContentAG" class="tab-content">
-    <div class="content">
-      <div id="tblAG" class="tableForm">
-        <div class="btnGroup" id="btnGrpBanco">
-          <button class="ag" id="btn-ag">AGÊNCIA BRADESCO</button>
-          <!-- 
+    <div id="tabContentAG" class="tab-content">
+      <div class="content">
+        <div id="tblAG" class="tableForm">
+          <div class="btnGroup" id="btnGrpBanco">
+            <button class="ag" id="btn-ag">AGÊNCIA BRADESCO</button>
+            <!-- 
               <select id="bancoSelect" name="banco">
                 <option value="">Selecionar</option>
                 <option value="bradesco">Bradesco</option>
@@ -92,19 +86,19 @@
                 <option value="bb">Banco do Brasil</option>
               </select> 
             -->
-        </div>
+          </div>
 
-        <div class="popup-title">
-          CONSULTA CÓDIGO DO BANCO
-        </div>
-        <div id="selectContainer" class="stage">
-          <input type="text" id="searchBank" class="searchData" placeholder="DIGITE O NOME DO BANCO">
-          <ul id="bancoResults" class="ul-results"></ul>
-          <div id="bancoInfo" class="resultInfo "></div>
+          <div class="popup-title">
+            CONSULTA CÓDIGO DO BANCO
+          </div>
+          <div id="selectContainer" class="stage">
+            <input type="text" id="searchBank" class="searchData" placeholder="DIGITE O NOME DO BANCO">
+            <ul id="bancoResults" class="ul-results"></ul>
+            <div id="bancoInfo" class="resultInfo "></div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
   </div>
 
@@ -133,7 +127,6 @@
   </div>
 
   <script type="module" src="assets/scripts/popup.js"></script>
-
 </body>
 
 </html>

@@ -1,8 +1,8 @@
 {
    "manifest_version": 3,
-   "name": "Gerador de Dados (CPF, RG, CNH, PIS, CNPJ, CEP e +)",
-   "description": "Gerador de CPF, RG, CNH, PIS, CNPJ, CEP, Nome, Nickname, E-mail, Inscrição Estadual e Agências Bancárias. Consulta Código de Bancos",
-   "version": "1.1.2",
+   "name": "Gerador de Dados - CPF RG CNH PIS CNPJ CEP ++",
+   "description": "Gerador de Dados Fictícios CPF, RG, CNH, PIS, CNPJ, CEP, Nome, E-mail, celular, Telefone, Inscrição Estadual, Bancos e Agências. Consulta Código de Bancos",
+   "version": "1.2.0",
    "icons": {
       "16": "assets/images/icons/icon-16.png",
       "32": "assets/images/icons/icon-32.png",
