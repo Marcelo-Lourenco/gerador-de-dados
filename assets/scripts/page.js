@@ -18,6 +18,31 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+
+document.getElementById('icon-json').onclick = function () {
+  const fields = document.querySelectorAll('.col input');
+  const data = {};
+
+  fields.forEach((field) => {
+    if (field.id) {
+      const id = field.id.startsWith('fld') ? field.id.substring(3) : field.id;
+      const formattedId = id.charAt(0).toLowerCase() + id.slice(1);
+      data[formattedId] = field.value;
+    }
+  });
+
+  const jsonString = JSON.stringify(data, null, 2);
+  const downloadLink = document.createElement('a');
+  const file = new Blob([jsonString], { type: 'application/json' });
+
+  downloadLink.href = URL.createObjectURL(file);
+  downloadLink.download = 'pessoa.json';
+
+  downloadLink.click();
+};
+
+
+
 const inputFields = document.querySelectorAll('input');
 inputFields.forEach(inputField => {
   inputField.addEventListener('focus', function () {
@@ -49,6 +74,7 @@ tabs.forEach((tab) => {
 document.addEventListener("DOMContentLoaded", () => {
   getPeople(false);
   document.getElementById("generatorPeople").addEventListener("click", () => { getPeople(false); });
+
 });
 
 document.addEventListener("keypress", (e) => {
@@ -122,3 +148,5 @@ function getPeople() {
   document.getElementById('fldTelephone').value = telephone;
 
 }
+
+
