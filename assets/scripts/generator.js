@@ -1,17 +1,16 @@
 import db from './db.js';
 import dbCep from './db-ceps.js';
 
-
 let address = {
   generate: function (mask, uf) {
     let fullAddress = uf ? dbCep.filter(endereco => endereco.uf === uf) : dbCep;
-    let drawnAddress = fullAddress[Math.floor(Math.random() * fullAddress.length)]
-    let zipCode = drawnAddress.cep.replace(/\D/g, '');;
+    let sortAddress = fullAddress[Math.floor(Math.random() * fullAddress.length)]
+    let zipCode = sortAddress.cep.replace(/\D/g, '');
 
     if (mask) {
       zipCode = zipCode.replace(/^(\d{5})(\d{3})$/, '$1-$2');
     }
-    return [zipCode, drawnAddress];
+    return [zipCode, sortAddress];
   }
 };
 
@@ -235,11 +234,11 @@ let operator = {
 
 let cellphone = {
   generate: function (mask, state) {
-    const drawnDdd = ddd.generate(state);
-    const drawnOperator = operator.generate();
+    const sortDdd = ddd.generate(state);
+    const sortOperator = operator.generate();
     const n3 = cellphone.r(), n4 = cellphone.r(), n5 = cellphone.r(), n6 = cellphone.r(), n7 = cellphone.r(), n8 = cellphone.r();
 
-    let cellphoneGen = `(${drawnDdd}) ${drawnOperator}${n3}${n4}-${n5}${n6}${n7}${n8}`;
+    let cellphoneGen = `(${sortDdd}) ${sortOperator}${n3}${n4}-${n5}${n6}${n7}${n8}`;
 
     return mask ? cellphoneGen : cellphoneGen.replace(/\D/g, '');
   },
@@ -250,12 +249,12 @@ let cellphone = {
 
 let telephone = {
   generate: function (mask, state) {
-    const drawnDdd = ddd.generate(state);
+    const sortDdd = ddd.generate(state);
 
     const n1 = Math.floor(Math.random() * (3 - 2 + 1)) + 2;
     const n2 = telephone.r(), n3 = telephone.r(), n4 = telephone.r(), n5 = telephone.r(), n6 = telephone.r(), n7 = telephone.r(), n8 = telephone.r();
 
-    let telephoneGen = `(${drawnDdd}) ${n1}${n2}${n3}${n4}-${n5}${n6}${n7}${n8}`;
+    let telephoneGen = `(${sortDdd}) ${n1}${n2}${n3}${n4}-${n5}${n6}${n7}${n8}`;
 
     return mask ? telephoneGen : telephoneGen.replace(/\D/g, '');
   },
