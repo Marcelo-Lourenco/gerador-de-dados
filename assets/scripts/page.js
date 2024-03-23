@@ -81,33 +81,44 @@ function getPeople() {
   let state = chooseState.generate();
   let mask = document.getElementById("fldMask").checked;
 
-  let getAddressFull = gen.address.generate(mask, state)
-  let getZipCode = getAddressFull[0];
-  let getAddress = getAddressFull[1];
+  let addressFull = gen.address.generate(mask, state)
+  let zipCode = addressFull[0];
+  let address = addressFull[1];
 
-  let getName = gen.name.generate(sex);
-  let getCpf = gen.cpf.generate(mask, state);
-  let getRg = gen.rg.generate(mask, state);
-  let getCnh = gen.cnh.generate();
-  let getPis = gen.pis.generate(mask);
-  let getEmail = gen.email.generate(getName);
-  let getCellphone = gen.cellphone.generate(mask, getAddress.uf);
-  let getTelephone = gen.telephone.generate(mask, getAddress.uf);
+  let name = gen.name.generate(sex);
+  let dataNascimento = gen.birthDate.generate();
+  let cpf = gen.cpf.generate(mask, state);
+  let rg = gen.rg.generate(mask, state);
+  let cnh = gen.cnh.generate();
+  let titulo = gen.voterTitle.generate(mask, state);
+  let pis = gen.pis.generate(mask);
+  let cns = gen.cns.generate(mask);
+  let passaporte = gen.passport.generate();
 
-  document.getElementById('fldName').value = getName;
-  document.getElementById('fldCpf').value = getCpf;
-  document.getElementById('fldRg').value = getRg;
-  document.getElementById('fldCnh').value = getCnh;
-  document.getElementById('fldPis').value = getPis;
+  let email = gen.email.generate(name);
+  let cellphone = gen.cellphone.generate(mask, address.uf);
+  let telephone = gen.telephone.generate(mask, address.uf);
 
-  document.getElementById('fldCep').value = getZipCode;
-  document.getElementById('fldLogradouro').value = getAddress.logradouro;
-  document.getElementById('fldBairro').value = getAddress.bairro;
-  document.getElementById('fldLocalidade').value = getAddress.localidade;
-  document.getElementById('fldUf').value = getAddress.uf;
+  document.getElementById('fldName').value = name;
+  document.getElementById('fldDataNasc').value = dataNascimento;
+  document.getElementById('fldCpf').value = cpf;
+  document.getElementById('fldRg').value = rg;
+  document.getElementById('fldCnh').value = cnh;
+  document.getElementById('fldTitulo').value = titulo;
 
-  document.getElementById('fldEmail').value = getEmail;
-  document.getElementById('fldCellphone').value = getCellphone;
-  document.getElementById('fldTelephone').value = getTelephone;
+  document.getElementById('fldPis').value = pis;
+  document.getElementById('fldCns').value = cns;
+  document.getElementById('fldPassaporte').value = passaporte;
+
+  document.getElementById('fldCep').value = zipCode;
+  document.getElementById('fldLogradouro').value = address.logradouro;
+  document.getElementById('fldNumero').value = Math.floor(Math.random() * 999) + 1;
+  document.getElementById('fldBairro').value = address.bairro;
+  document.getElementById('fldLocalidade').value = address.localidade;
+  document.getElementById('fldUf').value = address.uf;
+
+  document.getElementById('fldEmail').value = email;
+  document.getElementById('fldCellphone').value = cellphone;
+  document.getElementById('fldTelephone').value = telephone;
 
 }

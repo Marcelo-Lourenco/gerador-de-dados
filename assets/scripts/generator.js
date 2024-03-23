@@ -37,6 +37,23 @@ let name = {
   }
 };
 
+let birthDate = {
+  generate: function () {
+    // Generate a random number between 18 and 80 years ago
+    const ageInDays = Math.floor(Math.random() * (80 * 365 - 18 * 365) + 18 * 365);
+    const now = new Date();
+    const birthDt = new Date(now.getTime() - ageInDays * 24 * 60 * 60 * 1000);
+
+    // Formatar a data para o formato dd/mm/aaaa
+    const d = String(birthDt.getDate()).padStart(2, '0');
+    const m = String(birthDt.getMonth() + 1).padStart(2, '0');
+    const a = birthDt.getFullYear();
+
+    return `${d}/${m}/${a}`;
+
+  }
+}
+
 let cpf = {
   generate: function (mask, state) {
     const n1 = cpf.r(), n2 = cpf.r(), n3 = cpf.r(), n4 = cpf.r(), n5 = cpf.r(), n6 = cpf.r(), n7 = cpf.r(), n8 = cpf.r(), n9 = cpf.numStates(state);
@@ -141,6 +158,37 @@ let categoryCnh = {
   }
 }
 
+let voterTitle = {
+  generate: function (mask, state) {
+    const r = () => Math.round(Math.random() * 9);
+
+    const n = Array.from({ length: 8 }, r);
+    const stateCode = voterTitle.statesCode(state);
+    const [n9, n10] = stateCode.split("");
+
+    let d1 = n.reduce((acc, digit, index) => acc + digit * (index + 2), 0) % 11;
+    d1 = voterTitle.mod(d1, stateCode);
+
+    let d2 = [n9, n10, d1].reduce((acc, digit, index) => acc + digit * (index === 2 ? 9 : index + 7), 0) % 11;
+    d2 = voterTitle.mod(d2, stateCode);
+
+    const vt = [...n, n9, n10, d1, d2].join("");
+    return mask ? vt.slice(0, 4) + " " + vt.slice(4, 8) + " " + vt.slice(8) : vt;
+  },
+  statesCode: function (state) {
+    const stateCodes = {
+      "AC": "24", "AL": "17", "AM": "22", "AP": "25", "BA": "05", "CE": "07", "DF": "20",
+      "ES": "14", "GO": "10", "MA": "11", "MG": "02", "MS": "19", "MT": "18", "PA": "13",
+      "PB": "12", "PE": "08", "PI": "15", "PR": "06", "RJ": "03", "RN": "16", "RO": "23",
+      "RR": "26", "RS": "04", "SC": "09", "SE": "21", "SP": "01", "TO": "27"
+    };
+    return stateCodes[state];
+  },
+  mod: function (dv, state) {
+    return dv === 10 ? 0 : (dv === 0 && (state === "01" || state === "02")) ? 1 : dv;;
+  }
+}
+
 let pis = {
   generate: function (mask) {
     const weight = [3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
@@ -159,6 +207,56 @@ let pis = {
     }
 
     return pis;
+  }
+}
+
+let cns = {
+  generate: function (mask) {
+    let cns = 0;
+
+    while (cns.length !== 15) {
+      let n1 = Math.floor((Math.random() * 3) + 1);
+      n1 = (n1 === 3) ? Math.floor((Math.random() * 3) + 7) : n1;
+      let n2 = ("00000" + Math.floor(Math.random() * 99999 + 1)).slice(-5);
+      let n3 = ("00000" + Math.floor(Math.random() * 99999 + 1)).slice(-5);
+      cns = n1 + n2 + n3;
+
+      let sum = 0;
+      for (let i = 0; i < cns.length; i++) {
+        sum += Number(cns.charAt(i)) * (15 - i);
+      }
+
+      let mod = sum % 11;
+      let dv = 11 - mod;
+      dv = (dv === 11) ? 0 : dv;
+
+      if (dv === 10) {
+        let sum = 2;
+        for (let i = 0; i < cns.length; i++) {
+          sum += Number(cns.charAt(i)) * (15 - i);
+        }
+        mod = sum % 11;
+        dv = 11 - mod;
+        cns += "001" + String(dv);
+      } else {
+        cns += "000" + String(dv);
+      }
+
+      let cnsGen = `${cns.substr(0, 3)} ${cns.substr(3, 4)} ${cns.substr(7, 4)} ${cns.substr(11, 4)}`;
+
+      return mask ? cnsGen : cnsGen.replace(/\D/g, '');
+    }
+  }
+}
+
+let passport = {
+  generate: function () {
+    let series = '';
+    let numbers = ('0000000' + Math.floor(Math.random() * 10000000)).slice(-7);
+    for (let i = 0; i < 2; i++) {
+      series += String.fromCharCode(65 + Math.floor(Math.random() * 26));
+    }
+    return `${series}${numbers}`;
   }
 }
 
@@ -264,4 +362,6 @@ let telephone = {
 }
 
 
-export default { address, name, cpf, rg, cnh, categoryCnh, pis, email, nickname, cellphone, telephone };
+
+
+export default { address, name, birthDate, cpf, rg, cnh, categoryCnh, voterTitle, pis, cns, passport, email, nickname, cellphone, telephone };
