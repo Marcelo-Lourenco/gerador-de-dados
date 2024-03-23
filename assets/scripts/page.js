@@ -47,12 +47,8 @@ tabs.forEach((tab) => {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-
   getPeople(false);
-
-  // Adicionando evento de clique no botão
   document.getElementById("generatorPeople").addEventListener("click", () => { getPeople(false); });
-
 });
 
 document.addEventListener("keypress", (e) => {
@@ -64,8 +60,25 @@ document.addEventListener("keypress", (e) => {
 
 function getPeople() {
 
-  let sex = document.getElementById("fldSex").value;
-  let state = document.getElementById("fldState").value;
+  let chooseSex = {
+    generate: function () {
+      let sexValeu = document.getElementById("fldSex").value;
+      return sexValeu ? sexValeu : ["F", "M"][Math.floor(Math.random() * 2)]
+    }
+  }
+
+  let chooseState = {
+    generate: function () {
+      let stateValeu = document.getElementById("fldState").value;
+      var ufArr = [
+        "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"
+      ];
+      return stateValeu ? stateValeu : ufArr[Math.floor(Math.random() * ufArr.length)];
+    }
+  };
+
+  let sex = chooseSex.generate();
+  let state = chooseState.generate();
   let mask = document.getElementById("fldMask").checked;
 
   let getAddressFull = gen.address.generate(mask, state)
