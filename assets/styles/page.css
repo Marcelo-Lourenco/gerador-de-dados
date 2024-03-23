@@ -149,7 +149,7 @@ input {
   color: var(--color-input-text);
   border: 1px solid var(--color-input-border);
   background-color: var(--color-input-background);
-  border-radius: 5px;
+  border-radius: 4px;
   outline: none;
 }
 
@@ -469,4 +469,26 @@ input:checked+.slider:before {
 
 .input-container:hover .tooltip {
   display: inline-block;
+}
+
+hr {
+  margin: 20px -16px;
+  border: 0;
+  border-top: 1px solid var(--color-border-default);
+}
+
+.vr {
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  align-items: center;
+  /* border-right: 1px solid var(--color-border-default); */
+  width: 33%;
+  padding: 0 px;
+  margin: 0px;
+}
+
+
+.col {
+  display: flex;
 }

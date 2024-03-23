@@ -4,21 +4,18 @@ import dbCep from './db-ceps.js';
 
 let address = {
   generate: function (mask, uf) {
-    let ends = dbCep;
-    if (uf) {
-      ends = dbCep.filter(endereco => endereco.uf === uf); // Filtra os endereços pelo UF
-    }
-    let randomIndex = Math.floor(Math.random() * ends.length);
-    let end = ends[randomIndex]
-    let cep = ends[randomIndex].cep.replace(/\D/g, '');;
+    let fullAddress = uf ? dbCep.filter(endereco => endereco.uf === uf) : dbCep;
+    let drawnAddress = fullAddress[Math.floor(Math.random() * fullAddress.length)]
+    let zipCode = drawnAddress.cep.replace(/\D/g, '');;
 
     if (mask) {
-      cep = cep.replace(/^(\d{5})(\d{3})$/, '$1-$2');
+      zipCode = zipCode.replace(/^(\d{5})(\d{3})$/, '$1-$2');
     }
-    return [cep, end];
+    return [zipCode, drawnAddress];
   }
 };
 
+let fullName;
 let name = {
   generate: function (sex) {
     let names;
@@ -36,22 +33,14 @@ let name = {
     let name = names[Math.floor(Math.random() * names.length)];
     let middleName = middleNames[Math.floor(Math.random() * middleNames.length)];
     let lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
-
-    return `${name} ${middleName} ${lastName}`;
+    fullName = `${name} ${middleName} ${lastName}`
+    return fullName;
   }
 };
 
 let cpf = {
   generate: function (mask, state) {
-    const n1 = cpf.r();
-    const n2 = cpf.r();
-    const n3 = cpf.r();
-    const n4 = cpf.r();
-    const n5 = cpf.r();
-    const n6 = cpf.r();
-    const n7 = cpf.r();
-    const n8 = cpf.r();
-    const n9 = cpf.numStates(state);
+    const n1 = cpf.r(), n2 = cpf.r(), n3 = cpf.r(), n4 = cpf.r(), n5 = cpf.r(), n6 = cpf.r(), n7 = cpf.r(), n8 = cpf.r(), n9 = cpf.numStates(state);
 
     let d1 = n9 * 2 + n8 * 3 + n7 * 4 + n6 * 5 + n5 * 6 + n4 * 7 + n3 * 8 + n2 * 9 + n1 * 10;
     d1 = 11 - (cpf.mod(d1, 11));
@@ -64,9 +53,9 @@ let cpf = {
     if (d2 >= 10) {
       d2 = 0;
     }
-    return mask
-      ? `${n1}${n2}${n3}.${n4}${n5}${n6}.${n7}${n8}${n9}-${d1}${d2}`
-      : `${n1}${n2}${n3}${n4}${n5}${n6}${n7}${n8}${n9}${d1}${d2}`;
+
+    let cpfGen = `${n1}${n2}${n3}.${n4}${n5}${n6}.${n7}${n8}${n9}-${d1}${d2}`;
+    return mask ? cpfGen : cpfGen.replace(/\D/g, '');
   },
   numStates: function (state) {
     if (["RS"].includes(state)) return 0;
@@ -90,78 +79,66 @@ let cpf = {
 
 let rg = {
   generate: function (mask, state) {
-    const n1 = Math.floor((Math.random() * 4) + 1)
-    const n2 = Math.round(Math.random() * 9);
-    const n3 = Math.round(Math.random() * 9);
-    const n4 = Math.round(Math.random() * 9);
-    const n5 = Math.round(Math.random() * 9);
-    const n6 = Math.round(Math.random() * 9);
-    const n7 = Math.round(Math.random() * 9);
-    const n8 = Math.round(Math.random() * 9);
+    const n1 = Math.floor((Math.random() * 4) + 1),
+      n2 = rg.r(), n3 = rg.r(), n4 = rg.r(), n5 = rg.r(), n6 = rg.r(), n7 = rg.r(), n8 = rg.r();
 
     const sum = n1 * 2 + n2 * 3 + n3 * 4 + n4 * 5 + n5 * 6 + n6 * 7 + n7 * 8 + n8 * 9;
-    let digit = 11 - (sum % 11);
+    let dv = 11 - (sum % 11);
 
-    if (digit === 11) {
-      digit = 0;
+    if (dv === 11) {
+      dv = 0;
     }
 
-    if (digit === 10) {
-      digit = "X";
+    if (dv === 10) {
+      dv = "X";
     }
 
-    return mask
-      ? `${n1}${n2}.${n3}${n4}${n5}.${n6}${n7}${n8}-${digit}`
-      : `${n1}${n2}${n3}${n4}${n5}${n6}${n7}${n8}${digit}`;
+    let rgGen = `${n1}${n2}.${n3}${n4}${n5}.${n6}${n7}${n8}-${dv}`;
+
+    return mask ? rgGen : rgGen.replace(/\D/g, '');
+  },
+  r: function () {
+    return Math.round(Math.random() * 9);
   }
 }
+
 let cnh = {
   generate: function () {
-    let cnh = "";
-    while (true) {
-      const n1 = Math.round(Math.random() * 9);
-      const n2 = Math.round(Math.random() * 9);
-      const n3 = Math.round(Math.random() * 9);
-      const n4 = Math.round(Math.random() * 9);
-      const n5 = Math.round(Math.random() * 9);
-      const n6 = Math.round(Math.random() * 9);
-      const n7 = Math.round(Math.random() * 9);
-      const n8 = Math.round(Math.random() * 9);
-      const n9 = Math.round(Math.random() * 9);
+    let cnhNum = String(Math.floor(Math.random() * 900000000) + 100000000);
+    let cnhDv = this.calcDV(cnhNum);
+    return `${cnhNum}${cnhDv}`;
+  },
+  calcDV: function (cnhNum) {
+    let n1 = 9, n2 = 1, dv1 = 0, dv2 = 0, lMaior = false;
 
-      let aux = 0;
-
-      const sumDv1 = n1 * 9 + n2 * 8 + n3 * 7 + n4 * 6 + n5 * 5 + n6 * 4 + n7 * 3 + n8 * 2 + n9 * 1;
-      let dv1 = sumDv1 % 11;
-      if (dv1 >= 10) {
-        dv1 = 0;
-        aux = 2;
-      }
-
-      const sumDv2 = n1 * 1 + n2 * 2 + n3 * 3 + n4 * 4 + n5 * 5 + n6 * 6 + n7 * 7 + n8 * 8 + n9 * 9;
-      let dv2 = sumDv2 % 11;
-      dv2 = dv2 >= 10
-        ? 0
-        : dv2 - aux;
-
-      if (dv2 < 0) {
-        continue;
-      }
-
-      cnh = `${n1}${n2}${n3}${n4}${n5}${n6}${n7}${n8}${n9}${dv1}${dv2}`;
-
-      break;
+    for (let i = 0; i < 9; i++) {
+      let vl = parseInt(cnhNum.charAt(i), 10);
+      dv1 += vl * n1;
+      dv2 += vl * n2;
+      n1--;
+      n2++;
     }
 
-    return cnh;
+    dv1 = dv1 % 11;
+    dv1 = dv1 > 9 ? 0 : dv1;
+
+    dv2 = dv2 % 11;
+    if (dv2 > 9) {
+      dv2 = dv2 - 2 < 0 ? dv2 + 9 : dv2 - 2;
+    }
+
+    dv2 = dv2 > 9 ? 0 : dv2;
+
+    return String.fromCharCode(48 + dv1) + String.fromCharCode(48 + dv2);
   }
-}
+};
+
 
 let categoryCnh = {
   generate: function () {
-    const arr = ["ACC", "A", "B", "C", "D", "E"];
+    const cat = ["ACC", "A", "B", "C", "D", "E"];
     const index = Math.floor((Math.random() * 6));
-    return arr[index];
+    return cat[index];
   }
 }
 
@@ -186,4 +163,106 @@ let pis = {
   }
 }
 
-export default { address, name, cpf, rg, cnh, categoryCnh, pis };
+let email = {
+  generate: function (fullName) {
+    let removeSpecialCharacter = fullName.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    let partsName = removeSpecialCharacter.match(/\w+/g);
+    let mail = partsName.slice(0, 2).join(' ').toLowerCase().replace(/ /g, ".");
+    let emailProviders = db.provedoresEmail;
+    let emailProvider = emailProviders[Math.floor(Math.random() * emailProviders.length)];
+    return `${mail}${emailProvider}`;
+  }
+};
+
+let nickname = {
+  generate: function () {
+    let nicknames = db.nicknames;
+    let nickname = nicknames[Math.floor(Math.random() * nicknames.length)];
+    return `${nickname}`;
+  }
+};
+
+let ddd = {
+  generate: function (state) {
+    const ddds = {
+      "AC": [68],
+      "AL": [82],
+      "AM": [92, 97],
+      "AP": [96],
+      "BA": [71, 73, 74, 75, 77],
+      "CE": [85, 88],
+      "DF": [61],
+      "ES": [27, 28],
+      "GO": [62, 64],
+      "MA": [98, 99],
+      "MG": [31, 32, 33, 34, 35, 37, 38],
+      "MS": [67],
+      "MT": [65, 66],
+      "PA": [91, 93, 94],
+      "PB": [83],
+      "PE": [81, 87],
+      "PI": [86, 89],
+      "PR": [41, 42, 43, 44, 45, 46],
+      "RJ": [21, 22, 24],
+      "RN": [84],
+      "RO": [69],
+      "RR": [95],
+      "RS": [51, 53, 54, 55],
+      "SC": [47, 48, 49],
+      "SE": [79],
+      "SP": [11, 12, 13, 14, 15, 16, 17, 18, 19],
+      "TO": [63]
+    }
+    const dddState = ddds[state];
+    return dddState[Math.floor(Math.random() * dddState.length)];
+  }
+};
+
+let operator = {
+  generate: function () {
+    const operators = {
+      "Claro": [968, 973, 974, 975, 976, 991, 992, 993, 994],
+      "Oi": [984, 985, 986, 987, 988, 989],
+      "Tim": [969, 979, 980, 981, 982, 983],
+      "Vivo": [967, 971, 972, 995, 996, 997, 998, 999]
+    };
+
+    const names = Object.keys(operators);
+    const randCodes = operators[names[Math.floor(Math.random() * names.length)]];
+    return randCodes[Math.floor(Math.random() * randCodes.length)];
+  }
+};
+
+let cellphone = {
+  generate: function (mask, state) {
+    const drawnDdd = ddd.generate(state);
+    const drawnOperator = operator.generate();
+    const n3 = cellphone.r(), n4 = cellphone.r(), n5 = cellphone.r(), n6 = cellphone.r(), n7 = cellphone.r(), n8 = cellphone.r();
+
+    let cellphoneGen = `(${drawnDdd}) ${drawnOperator}${n3}${n4}-${n5}${n6}${n7}${n8}`;
+
+    return mask ? cellphoneGen : cellphoneGen.replace(/\D/g, '');
+  },
+  r: function () {
+    return Math.round(Math.random() * 9);
+  }
+}
+
+let telephone = {
+  generate: function (mask, state) {
+    const drawnDdd = ddd.generate(state);
+
+    const n1 = Math.floor(Math.random() * (3 - 2 + 1)) + 2;
+    const n2 = telephone.r(), n3 = telephone.r(), n4 = telephone.r(), n5 = telephone.r(), n6 = telephone.r(), n7 = telephone.r(), n8 = telephone.r();
+
+    let telephoneGen = `(${drawnDdd}) ${n1}${n2}${n3}${n4}-${n5}${n6}${n7}${n8}`;
+
+    return mask ? telephoneGen : telephoneGen.replace(/\D/g, '');
+  },
+  r: function () {
+    return Math.round(Math.random() * 9);
+  }
+}
+
+
+export default { address, name, cpf, rg, cnh, categoryCnh, pis, email, nickname, cellphone, telephone };

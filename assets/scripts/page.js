@@ -29,10 +29,6 @@ inputFields.forEach(inputField => {
 });
 
 
-//const masked = true;
-
-const NAME_COOKIE_GENERATOR_PEOPLE = "nv-cookie-generator-people";
-
 const tabs = document.querySelectorAll(".tab");
 const tabContents = document.querySelectorAll(".tab-content");
 tabs.forEach((tab) => {
@@ -52,22 +48,11 @@ tabs.forEach((tab) => {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  setCookieGeneratorPeople();
   getPeople(false);
 
   // Adicionando evento de clique no botão
   document.getElementById("generatorPeople").addEventListener("click", () => { getPeople(false); });
 
-  // Adicionando eventos de clique nos botões
-  document.querySelectorAll(".nv-btn-copy-all-data-people").forEach(btn => {
-    btn.addEventListener("click", () => { copyAllDataPeople(); });
-  });
-  document.querySelectorAll(".nv-btn-copy-all-data-people-json").forEach(btn => {
-    btn.addEventListener("click", () => { copyAllDataPeopleJSON(); });
-  });
-  document.querySelectorAll("[class^='nv-btn-textarea-copy']").forEach(btn => {
-    btn.addEventListener("click", (event) => { copy(`#nv-field-${event.target.id.split('-').pop()}`); });
-  });
 });
 
 document.addEventListener("keypress", (e) => {
@@ -77,37 +62,24 @@ document.addEventListener("keypress", (e) => {
   }
 });
 
-function setCookieGeneratorPeople() {
-  // Implemente a função para definir o cookie
-}
+function getPeople() {
 
-function copyAllDataPeople() {
-  // Implemente a função para copiar todos os dados
-}
+  let sex = document.getElementById("fldSex").value;
+  let state = document.getElementById("fldState").value;
+  let mask = document.getElementById("fldMask").checked;
 
-function copyAllDataPeopleJSON() {
-  // Implemente a função para copiar todos os dados em formato JSON
-}
-
-function copy(element) {
-  // Implemente a função para copiar o conteúdo de um elemento
-}
-
-function getPeople(copyField = false) {
-  const data = {
-    "sex": document.getElementById("fldSex").value,
-    "state": document.getElementById("fldState").value,
-    "mask": document.getElementById("fldMask").checked,
-  }
-
-  let getAddressFull = gen.address.generate(data.mask, data.state)
+  let getAddressFull = gen.address.generate(mask, state)
   let getZipCode = getAddressFull[0];
   let getAddress = getAddressFull[1];
-  let getName = gen.name.generate(data.sex);
-  let getCpf = gen.cpf.generate(data.mask, getAddress.uf);
-  let getRg = gen.rg.generate(data.mask, getAddress.uf);
+
+  let getName = gen.name.generate(sex);
+  let getCpf = gen.cpf.generate(mask, state);
+  let getRg = gen.rg.generate(mask, state);
   let getCnh = gen.cnh.generate();
-  let getPis = gen.pis.generate(data.mask);
+  let getPis = gen.pis.generate(mask);
+  let getEmail = gen.email.generate(getName);
+  let getCellphone = gen.cellphone.generate(mask, getAddress.uf);
+  let getTelephone = gen.telephone.generate(mask, getAddress.uf);
 
   document.getElementById('fldName').value = getName;
   document.getElementById('fldCpf').value = getCpf;
@@ -116,12 +88,13 @@ function getPeople(copyField = false) {
   document.getElementById('fldPis').value = getPis;
 
   document.getElementById('fldCep').value = getZipCode;
-
-  //document.getElementById('fldEndereco').value = JSON.stringify(getAddress[1].logradouro);
   document.getElementById('fldLogradouro').value = getAddress.logradouro;
-  /* document.getElementById('fldComplemento').value = getAddress.complemento ? getAddress.complemento : " "; */
   document.getElementById('fldBairro').value = getAddress.bairro;
   document.getElementById('fldLocalidade').value = getAddress.localidade;
   document.getElementById('fldUf').value = getAddress.uf;
+
+  document.getElementById('fldEmail').value = getEmail;
+  document.getElementById('fldCellphone').value = getCellphone;
+  document.getElementById('fldTelephone').value = getTelephone;
 
 }
