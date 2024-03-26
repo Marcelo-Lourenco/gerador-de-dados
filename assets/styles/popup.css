@@ -205,16 +205,16 @@ button:hover {
 }
 
 .switch {
-  display: inline-block;
   position: relative;
-  width: 36px;
-  height: 18px;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
 }
 
 .switch input {
-  height: 0;
   opacity: 0;
   width: 0;
+  height: 0;
 }
 
 .slider {
@@ -224,18 +224,22 @@ button:hover {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--color-blur);
+  background-color: #ccc;
+  -webkit-transition: .4s;
   transition: .4s;
 }
+
+
 
 .slider:before {
   position: absolute;
   content: "";
-  height: 13px;
-  width: 13px;
-  left: 4px;
-  bottom: 3px;
-  background-color: #ffffff;
+  height: 20px;
+  width: 20px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
   transition: .4s;
 }
 
@@ -248,15 +252,22 @@ input:focus+.slider {
 }
 
 input:checked+.slider:before {
-  transform: translateX(16px);
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
 }
 
+/* Rounded sliders */
 .slider.round {
-  border-radius: 34px;
+  border-radius: 24px;
 }
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+.switch-label {
+  margin-left: 15px;
 }
 
 #generatedData {
