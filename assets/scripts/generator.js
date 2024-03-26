@@ -1,5 +1,6 @@
 import db from './db.js';
 import dbCep from './db-ceps.js';
+import dbBanco from './db-bancos.js';
 
 let address = {
   generate: function (mask, uf) {
@@ -93,6 +94,28 @@ let cpf = {
   }
 }
 
+let cnpj = {
+  generate: function (mask) {
+    let n1 = cnpj.r(), n2 = cnpj.r(), n3 = cnpj.r(), n4 = cnpj.r(), n5 = cnpj.r(), n6 = cnpj.r(), n7 = cnpj.r(), n8 = cnpj.r(), n9 = 0, n10 = 0, n11 = 0, n12 = 1;
+
+    let dv1 = n12 * 2 + n11 * 3 + n10 * 4 + n9 * 5 + n8 * 6 + n7 * 7 + n6 * 8 + n5 * 9 + n4 * 2 + n3 * 3 + n2 * 4 + n1 * 5;
+    dv1 = cnpj.calcDV(dv1);
+
+    let dv2 = dv1 * 2 + n12 * 3 + n11 * 4 + n10 * 5 + n9 * 6 + n8 * 7 + n7 * 8 + n6 * 9 + n5 * 2 + n4 * 3 + n3 * 4 + n2 * 5 + n1 * 6;
+    dv2 = cnpj.calcDV(dv2);
+
+    let cnpjGerado = `${n1}${n2}.${n3}${n4}${n5}.${n6}${n7}${n8}/${n9}${n10}${n11}${n12}-${dv1}${dv2}`;
+    return mask ? cnpjGerado : cnpjGerado.replace(/\D/g, '');
+  },
+  calcDV: function (dv) {
+    dv = 11 - (dv % 11);
+    return (dv >= 10) ? 0 : dv;
+  },
+  r: function () {
+    return Math.round(Math.random() * 9);
+  }
+}
+
 let rg = {
   generate: function (mask, state) {
     const n1 = Math.floor((Math.random() * 4) + 1),
@@ -148,7 +171,6 @@ let cnh = {
     return String.fromCharCode(48 + dv1) + String.fromCharCode(48 + dv2);
   }
 };
-
 
 let categoryCnh = {
   generate: function () {
@@ -260,6 +282,14 @@ let passport = {
   }
 }
 
+let nickname = {
+  generate: function () {
+    let nicknames = db.nicknames;
+    let nickname = nicknames[Math.floor(Math.random() * nicknames.length)];
+    return `${nickname}`;
+  }
+};
+
 let email = {
   generate: function (fullName) {
     let removeSpecialCharacter = fullName.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -268,14 +298,12 @@ let email = {
     let emailProviders = db.provedoresEmail;
     let emailProvider = emailProviders[Math.floor(Math.random() * emailProviders.length)];
     return `${mail}${emailProvider}`;
-  }
-};
-
-let nickname = {
-  generate: function () {
-    let nicknames = db.nicknames;
-    let nickname = nicknames[Math.floor(Math.random() * nicknames.length)];
-    return `${nickname}`;
+  },
+  generateNickname: function () {
+    let mail = nickname.generate().toLowerCase();;
+    let emailProviders = db.provedoresEmail;
+    let emailProvider = emailProviders[Math.floor(Math.random() * emailProviders.length)];
+    return `${mail}${emailProvider}`;
   }
 };
 
@@ -361,7 +389,31 @@ let telephone = {
   }
 }
 
+let ie = {
+  generate: function (mask) {
+    let n1 = ie.r(), n2 = ie.r(), n3 = ie.r(), n4 = ie.r(), n5 = ie.r(), n6 = ie.r();
 
+    let ieGen = `${n1}${n2}${n3}.${n4}${n5}${n6}`;
+    return mask ? ieGen : ieGen.replace(/\D/g, '');
+  },
+  validate: function (documento) {
+    return (documento.length === 6 && !isNaN(documento));
+  },
+  r: function () {
+    return Math.round(Math.random() * 9);
+  }
+};
 
+let agency = {
+  generate: function (code) {
+    const bank = code ? dbBanco.find(bank => bank.code === code) : dbBanco.find(bank => bank.code === 237);
+    const sortAgency = bank.agency[Math.floor(Math.random() * bank.agency.length)];
+    return {
+      code: bank.code,
+      name: bank.name,
+      agency: sortAgency
+    };
+  }
+};
 
-export default { address, name, birthDate, cpf, rg, cnh, categoryCnh, voterTitle, pis, cns, passport, email, nickname, cellphone, telephone };
+export default { address, name, birthDate, cpf, cnpj, rg, cnh, categoryCnh, voterTitle, pis, cns, passport, email, nickname, cellphone, telephone, ie, agency };

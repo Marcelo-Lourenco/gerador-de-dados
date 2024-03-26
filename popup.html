@@ -16,45 +16,43 @@
       <li class="tab" id="tabCEP">CEP</li>
       <li class="tab" id="tabAG">Bancos</li>
     </ul>
-
     <div id="msgStage" class="msgStage">
       <!-- <div id="warning" class="success-message">Copiado para Área de Transferência</div> -->
     </div>
-
     <div class="tooltip">
       <input type="text" id="generatedData" readonly="readonly" />
       <span id="copiedClipboard" class="hidden">Copiado para Área de Transferência</span>
     </div>
 
-    <div class="flex">
+    <div class="input-container" id="divMask">
       <label class="switch">
-        <input type="checkbox" id="mask">
-        <span class="info slider round" for="mask"></span>
+        <input type="checkbox" id="fldMask" checked>
+        <span class="slider round"></span>
       </label>
-      <label class="text" for="mask">Máscara</label>
+      <span class="switch-label">Márcara</span>
     </div>
+
 
     <div id="tabContentPF" class="tab-content">
       <div class="content">
         <div id="tblPF" class="tableForm">
           <div class="btnGroup" id="btnGrpDocPF">
-            <button class="cpf" id="btn-cpf">CPF</button>
-            <button class="rg" id="btn-rg">RG</button>
-            <button class="cnh" id="btn-cnh">CNH</button>
-            <button class="pis" id="btn-pis">PIS</button>
+            <button class="" id="btnCpf">CPF</button>
+            <button class="" id="btnRg">RG</button>
+            <button class="" id="btnCnh">CNH</button>
+            <button class="" id="btnPis">PIS</button>
             <button class="highlight-button" id="openPage">PESSOA</button>
           </div>
         </div>
       </div>
     </div>
 
-
     <div id="tabContentPJ" class="tab-content">
       <div class="content">
         <div id="tblPJ" class="tableForm">
           <div class="btnGroup" id="btnGrpDocCnpj">
-            <button class="cnpj" id="btn-cnpj">CNPJ</button>
-            <button class="ie" id="btn-ie">IE</button>
+            <button class="cnpj" id="btnCnpj">CNPJ</button>
+            <button class="ie" id="btnIe">IE</button>
           </div>
         </div>
       </div>
@@ -64,7 +62,7 @@
       <div class="content">
         <div id="tblCEP" class="tableForm">
           <div class="btnGroup" id="btnGrpCep">
-            <button class="cep" id="btn-cep">CEP</button>
+            <button class="cep" id="btnCep">CEP</button>
           </div>
           <div id="cepInfo" class="resultInfo hidden"></div>
         </div>
@@ -74,18 +72,16 @@
     <div id="tabContentAG" class="tab-content">
       <div class="content">
         <div id="tblAG" class="tableForm">
+          <div class="input-container">
+            <select id="bancoSelect">
+              <option value="237">Bradesco</option>
+              <option value="104">Caixa</option>
+              <option value="341">Itaú</option>
+              <option value="33">Santander</option>
+            </select>
+          </div>
           <div class="btnGroup" id="btnGrpBanco">
-            <button class="ag" id="btn-ag">AGÊNCIA BRADESCO</button>
-            <!-- 
-              <select id="bancoSelect" name="banco">
-                <option value="">Selecionar</option>
-                <option value="bradesco">Bradesco</option>
-                <option value="itau">Itaú</option>
-                <option value="santander">Santander</option>
-                <option value="caixa">Caixa</option>
-                <option value="bb">Banco do Brasil</option>
-              </select> 
-            -->
+            <button id="btnAg">AGÊNCIA</button>
           </div>
 
           <div class="popup-title">
