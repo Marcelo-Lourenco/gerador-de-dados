@@ -70,10 +70,10 @@ chrome.contextMenus.onClicked.addListener((info, tabs) => {
     'dtNasc': () => gen.birthDate.generate(),
     'email': () => gen.email.generateNickname(),
     'nickname': () => gen.nickname.generate(),
-    'ag237': () => gen.agency.generate(237).agency,
-    'ag104': () => gen.agency.generate(104).agency,
-    'ag341': () => gen.agency.generate(341).agency,
-    'ag33': () => gen.agency.generate(33).agency
+    'ag237': () => gen.bank.generate(237).agency,
+    'ag104': () => gen.bank.generate(104).agency,
+    'ag341': () => gen.bank.generate(341).agency,
+    'ag33': () => gen.bank.generate(33).agency
   };
 
   const generator = generators[info.menuItemId];

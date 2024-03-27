@@ -365,6 +365,10 @@ input:checked+.slider:before {
   margin: 20px 20px;
 }
 
+.result-container {
+  width: 100%;
+}
+
 .ul-results {
   padding-inline-start: 10px;
   display: none;
@@ -372,6 +376,7 @@ input:checked+.slider:before {
 }
 
 .li-results {
+  cursor: pointer;
   list-style-type: none;
   padding-bottom: 10px;
 }

@@ -404,16 +404,19 @@ let ie = {
   }
 };
 
-let agency = {
+let bank = {
   generate: function (code) {
-    const bank = code ? dbBanco.find(bank => bank.code === code) : dbBanco.find(bank => bank.code === 237);
-    const sortAgency = bank.agency[Math.floor(Math.random() * bank.agency.length)];
+    const bankSearch = code ? dbBanco.find(bank => bank.code === code) : dbBanco.find(bank => bank.code === 237);
+    const sortAgency = bankSearch.agency[Math.floor(Math.random() * bankSearch.agency.length)];
     return {
-      code: bank.code,
-      name: bank.name,
+      code: bankSearch.code,
+      name: bankSearch.name,
       agency: sortAgency
     };
+  },
+  consult: {
+
   }
 };
 
-export default { address, name, birthDate, cpf, cnpj, rg, cnh, categoryCnh, voterTitle, pis, cns, passport, email, nickname, cellphone, telephone, ie, agency };
+export default { address, name, birthDate, cpf, cnpj, rg, cnh, categoryCnh, voterTitle, pis, cns, passport, email, nickname, cellphone, telephone, ie, bank };
