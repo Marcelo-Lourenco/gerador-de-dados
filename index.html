@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consulta de Banco</title>
+  <style>
+    .popup-title {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .stage {
+      margin-top: 10px;
+    }
+
+    .searchData {
+      width: 100%;
+      padding: 5px;
+      font-size: 16px;
+    }
+
+    .ul-results {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .ul-results li {
+      margin: 5px 0;
+      cursor: pointer;
+    }
+
+    .resultInfo {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="popup-title">
+    CONSULTA CÓDIGO DO BANCO
+  </div>
+  <div id="selectContainer" class="stage">
+    <input type="text" id="searchBank" class="searchData" placeholder="">
+    <label for="searchBank" class="fld-label">Digite o nome do banco</label>
+  </div>
+  <div id="resultContainer">
+    <ul id="bancoResults" class="ul-results"></ul>
+    <ul id="bancoResults2" class="ul-results"></ul>
+    <div id="bancoInfo" class="resultInfo"></div>
+  </div>
+
+  <script src="db-bancos.js" type="module"></script>
+  <script src="script.js" type="module"></script>
+
+
+</body>
+
+</html>

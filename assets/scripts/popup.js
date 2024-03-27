@@ -1,4 +1,5 @@
 import gen from './generator.js';
+import banks from './db-bancos.js';
 
 document.getElementById('openPage').addEventListener('click', function () {
   window.open('page.html', '_blank');
@@ -31,16 +32,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
   });
-
-
-
-
-
-
-
-
-
-
 
   // Ative a primeira aba por padrão
   tabs[0].click();
@@ -100,15 +91,14 @@ document.addEventListener('DOMContentLoaded', function () {
     popup.copy(zipCode);
     popup.showCep(address)
   });
-
   document.getElementById('btnAg').addEventListener('click', function () {
     const bancoSelect = document.getElementById('bancoSelect').value;
-    const sortAgency = gen.agency.generate(Number(bancoSelect)).agency
+    const sortAgency = gen.bank.generate(Number(bancoSelect)).agency
     document.getElementById('generatedData').value = sortAgency;
     popup.copy(sortAgency);
-    //popup.showCep(address)
-
+    //popup.showAgency(bancoSelect)
   });
+
 
 });
 
@@ -150,7 +140,5 @@ let popup = {
     document.getElementById('cepInfo').classList.add('visible');
   }
 }
-
-
 
 
