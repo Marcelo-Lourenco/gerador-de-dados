@@ -89,7 +89,7 @@ function getPeople() {
   let chooseSex = {
     generate: function () {
       let sexValeu = document.getElementById("fldSex").value;
-      return sexValeu ? sexValeu : ["F", "M"][Math.floor(Math.random() * 2)]
+      return sexValeu ? sexValeu : ["f", "m"][Math.floor(Math.random() * 2)]
     }
   }
 
@@ -125,6 +125,13 @@ function getPeople() {
   let cellphone = gen.cellphone.generate(mask, address.uf);
   let telephone = gen.telephone.generate(mask, address.uf);
 
+  let creditCardFull = gen.creditCard.generate(mask);
+  let creditCard = creditCardFull.number;
+  let brand = creditCardFull.brand;
+  let titularName = creditCardFull.titularName;
+  let cvv = creditCardFull.cvv;
+  let expirationDate = creditCardFull.expirationDate;
+
   document.getElementById('fldName').value = name;
   document.getElementById('fldDataNasc').value = dataNascimento;
   document.getElementById('fldCpf').value = cpf;
@@ -146,6 +153,11 @@ function getPeople() {
   document.getElementById('fldEmail').value = email;
   document.getElementById('fldCellphone').value = cellphone;
   document.getElementById('fldTelephone').value = telephone;
+  document.getElementById('fldCartCredito').value = creditCard;
+  document.getElementById('fldBandeira').value = brand;
+  document.getElementById('fldTitular').value = titularName;
+  document.getElementById('fldCvv').value = cvv;
+  document.getElementById('fldExpirationDate').value = expirationDate;
 
 }
 
