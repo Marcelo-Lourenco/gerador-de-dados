@@ -28,11 +28,13 @@ chrome.runtime.onInstalled.addListener(() => {
     { id: 'nickname', title: 'Nickname' },
     { id: 'dtNasc', title: 'Data Nascimento' },
     { id: 's03', type: 'separator' },
+    { id: 'cartaoCreditoSem', title: 'Cart. Crédito sem máscara' },
+    { id: 'cartaoCreditoCom', title: 'Cart. Crédito com máscara' },
+    { id: 's04', type: 'separator' },
     { id: 'ag237', title: 'Ag. Bradesco' },
     { id: 'ag104', title: 'Ag. Caixa' },
     { id: 'ag341', title: 'Ag. Itaú' },
     { id: 'ag33', title: 'Ag. Santande' }
-
   ];
 
   const parentId = chrome.contextMenus.create({ id: 'parent', title: 'Gerador de Dados2', contexts: ['all', 'editable', 'selection'] });
@@ -70,10 +72,13 @@ chrome.contextMenus.onClicked.addListener((info, tabs) => {
     'dtNasc': () => gen.birthDate.generate(),
     'email': () => gen.email.generateNickname(),
     'nickname': () => gen.nickname.generate(),
+    'cartaoCreditoSem': () => gen.creditCard.generate(false).number,
+    'cartaoCreditoCom': () => gen.creditCard.generate(true).number,
     'ag237': () => gen.bank.generate(237).agency,
     'ag104': () => gen.bank.generate(104).agency,
     'ag341': () => gen.bank.generate(341).agency,
-    'ag33': () => gen.bank.generate(33).agency
+    'ag33': () => gen.bank.generate(33).agency,
+
   };
 
   const generator = generators[info.menuItemId];

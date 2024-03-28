@@ -1,4 +1,4 @@
-import db from './db.js';
+import db from './db-general.js';
 import dbCep from './db-ceps.js';
 import dbBanco from './db-bancos.js';
 
@@ -414,9 +414,98 @@ let bank = {
       agency: sortAgency
     };
   },
-  consult: {
+  consult: function (code) {
 
   }
 };
 
-export default { address, name, birthDate, cpf, cnpj, rg, cnh, categoryCnh, voterTitle, pis, cns, passport, email, nickname, cellphone, telephone, ie, bank };
+let creditCard = {
+  generate: function (mask) {
+    const arr = creditCard.banner().number;
+    const brand = creditCard.banner().brandName
+    const length = 16 - arr.length;
+    for (var i = 1; i < length; i++) {
+      arr.push(Math.round(Math.random() * 9))
+    }
+
+    let sum = 0;
+    let aux = true;
+    let ninesOut = 0;
+    arr.forEach((value, i) => {
+      ninesOut = Number(value) * (aux ? 2 : 1); // false = 1 vs true = 2
+      ninesOut = ninesOut > 9 ? ninesOut - 9 : ninesOut;
+      sum = sum + ninesOut;
+      aux = !aux;
+      ninesOut = 0;
+    });
+
+    let digit = 10 - (sum % 10);
+    if (digit == 10) {
+      digit = 0;
+    }
+
+    const numberCard = mask ? arr.join("").replace(/(.{4})/g, "$1 ") + digit : arr.join("") + digit;
+    let names = fullName.split(' ');
+    let titularName = `${names[0]} ${names[1].charAt(0)} ${names.slice(-1)[0]}`;
+
+    const creditCardData = {
+      "number": numberCard,
+      "brand": brand,
+      "cvv": creditCard.cvv(),
+      "expirationDate": creditCard.expirationDate(),
+      "titularName": titularName
+    }
+
+    return creditCardData;
+  },
+  banner: function () {
+    let brandCodes = {
+      "discover": [6011, 622, 65],
+      "elo": [636368, 438935, 504175, 451416],
+      "jcb": [35],
+      "mastercard": [51, 52, 53, 54, 55],
+      "visa": [4]
+    };
+
+    const arrNumber = [];
+    for (let brand in brandCodes) {
+      brandCodes[brand].forEach(value => arrNumber.push({ number: value, brand: brand }));
+    }
+
+    let selectedEntry = arrNumber[Math.floor(Math.random() * arrNumber.length)];
+    let number = selectedEntry.number.toString().split("").map(Number);
+    let brandName = selectedEntry.brand;
+
+    return { number, brandName };
+  },
+  cvv: function () {
+    let random = Math.floor(Math.random() * 999) + 1;
+    let cvv = "00" + random.toString();
+    return cvv.substr(cvv.length - 3);
+  },
+  expirationDate: function () {
+    const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+    const getRandomMonth = () => getRandomInt(1, 12);
+    const getRandomDay = (month) => {
+      if ([1, 3, 5, 7, 8, 10, 12].includes(month)) {
+        return getRandomInt(1, 31);
+      } else if ([4, 6, 9, 11].includes(month)) {
+        return getRandomInt(1, 30);
+      } else {
+        return getRandomInt(1, 28);
+      }
+    };
+
+    const month = String(getRandomMonth()).padStart(2, '0');
+    const day = String(getRandomDay(month)).padStart(2, '0');
+    const year = new Date().getFullYear() + getRandomInt(1, 10);
+
+    return `${day}/${month}/${year}`;
+  }
+
+};
+
+
+
+
+export default { address, name, birthDate, cpf, cnpj, rg, cnh, categoryCnh, voterTitle, pis, cns, passport, email, nickname, cellphone, telephone, ie, bank, creditCard };
