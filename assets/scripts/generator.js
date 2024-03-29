@@ -445,15 +445,12 @@ let creditCard = {
     }
 
     const numberCard = mask ? arr.join("").replace(/(.{4})/g, "$1 ") + digit : arr.join("") + digit;
-    let names = fullName.split(' ');
-    let titularName = `${names[0]} ${names[1].charAt(0)} ${names.slice(-1)[0]}`;
 
     const creditCardData = {
       "number": numberCard,
       "brand": brand,
       "cvv": creditCard.cvv(),
-      "expirationDate": creditCard.expirationDate(),
-      "titularName": titularName
+      "expirationDate": creditCard.expirationDate()
     }
 
     return creditCardData;
@@ -501,6 +498,11 @@ let creditCard = {
     const year = new Date().getFullYear() + getRandomInt(1, 10);
 
     return `${day}/${month}/${year}`;
+  },
+  titularName: function (fullName) {
+    let names = fullName.split(' ');
+    let titularName = `${names[0]} ${names[1].charAt(0)} ${names.slice(-1)[0]}`;
+    return titularName;
   }
 
 };

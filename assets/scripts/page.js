@@ -95,11 +95,11 @@ function getPeople() {
 
   let chooseState = {
     generate: function () {
-      let stateValeu = document.getElementById("fldState").value;
+      let stateValue = document.getElementById("fldState").value;
       var ufArr = [
         "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"
       ];
-      return stateValeu ? stateValeu : ufArr[Math.floor(Math.random() * ufArr.length)];
+      return stateValue ? stateValue : ufArr[Math.floor(Math.random() * ufArr.length)];
     }
   };
 
@@ -128,16 +128,16 @@ function getPeople() {
   let creditCardFull = gen.creditCard.generate(mask);
   let creditCard = creditCardFull.number;
   let brand = creditCardFull.brand;
-  let titularName = creditCardFull.titularName;
+  let titularName = gen.creditCard.titularName(name);
   let cvv = creditCardFull.cvv;
   let expirationDate = creditCardFull.expirationDate;
 
-  document.getElementById('fldName').value = name;
+  document.getElementById('fldNome').value = name;
   document.getElementById('fldDataNasc').value = dataNascimento;
   document.getElementById('fldCpf').value = cpf;
   document.getElementById('fldRg').value = rg;
   document.getElementById('fldCnh').value = cnh;
-  document.getElementById('fldTitulo').value = titulo;
+  document.getElementById('fldTituloEleitor').value = titulo;
 
   document.getElementById('fldPis').value = pis;
   document.getElementById('fldCns').value = cns;
@@ -151,13 +151,13 @@ function getPeople() {
   document.getElementById('fldUf').value = address.uf;
 
   document.getElementById('fldEmail').value = email;
-  document.getElementById('fldCellphone').value = cellphone;
-  document.getElementById('fldTelephone').value = telephone;
-  document.getElementById('fldCartCredito').value = creditCard;
+  document.getElementById('fldCelular').value = cellphone;
+  document.getElementById('fldTelefone').value = telephone;
+  document.getElementById('fldCartaoCredito').value = creditCard;
   document.getElementById('fldBandeira').value = brand;
   document.getElementById('fldTitular').value = titularName;
   document.getElementById('fldCvv').value = cvv;
-  document.getElementById('fldExpirationDate').value = expirationDate;
+  document.getElementById('fldValidade').value = expirationDate;
 
 }
 

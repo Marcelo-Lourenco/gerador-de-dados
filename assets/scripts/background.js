@@ -1,11 +1,25 @@
 import gen from './generator.js';
 
+function sortState() {
+  const ufArr = [
+    "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"
+  ];
+  const uf = ufArr[Math.floor(Math.random() * ufArr.length)];
+  return uf;
+}
+
+function sendMessage(message) {
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    chrome.tabs.sendMessage(tabs[0].id, { tag: 'showDocument', message });
+  });
+}
+
 chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.local.set({ mask: false });
 
   const menus = [
     { id: 'cpfSem', title: 'CPF sem máscara' },
-    { id: 'cpfCom', title: 'CPF com máscara' },
+    { id: 'cpfCom', title: 'CPF com máscara (Alt+F)' },
     { id: 'rgSem', title: 'RG sem máscara' },
     { id: 'rgCom', title: 'RG com máscara' },
     { id: 'cnh', title: 'CNH' },
@@ -18,7 +32,7 @@ chrome.runtime.onInstalled.addListener(() => {
     { id: 'passaporte', title: 'Passaporte' },
     { id: 's01', type: 'separator' },
     { id: 'cnpjSem', title: 'CNPJ sem máscara' },
-    { id: 'cnpjCom', title: 'CNPJ com máscara' },
+    { id: 'cnpjCom', title: 'CNPJ com máscara (Alt+J)' },
     { id: 'ieSem', title: 'Insc. Estadual sem máscara' },
     { id: 'ieCom', title: 'Insc. Estadual com máscara' },
     { id: 's02', type: 'separator' },
@@ -28,8 +42,8 @@ chrome.runtime.onInstalled.addListener(() => {
     { id: 'nickname', title: 'Nickname' },
     { id: 'dtNasc', title: 'Data Nascimento' },
     { id: 's03', type: 'separator' },
-    { id: 'cartaoCreditoSem', title: 'Cart. Crédito sem máscara' },
-    { id: 'cartaoCreditoCom', title: 'Cart. Crédito com máscara' },
+    { id: 'cartaoCreditoSem', title: 'Cartão de Crédito sem máscara' },
+    { id: 'cartaoCreditoCom', title: 'Cartão de Crédito com máscara' },
     { id: 's04', type: 'separator' },
     { id: 'ag237', title: 'Ag. Bradesco' },
     { id: 'ag104', title: 'Ag. Caixa' },
@@ -37,7 +51,7 @@ chrome.runtime.onInstalled.addListener(() => {
     { id: 'ag33', title: 'Ag. Santande' }
   ];
 
-  const parentId = chrome.contextMenus.create({ id: 'parent', title: 'Gerador de Dados2', contexts: ['all', 'editable', 'selection'] });
+  const parentId = chrome.contextMenus.create({ id: 'parent', title: 'Gerador de Dados', contexts: ['all', 'editable', 'selection'] });
 
   menus.forEach(menu => {
     chrome.contextMenus.create({ parentId, contexts: ['all', 'editable'], ...menu });
@@ -45,10 +59,7 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 
 chrome.contextMenus.onClicked.addListener((info, tabs) => {
-  const ufArr = [
-    "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"
-  ];
-  const uf = ufArr[Math.floor(Math.random() * ufArr.length)];
+  let uf = sortState();
 
   const generators = {
     'cpfSem': () => gen.cpf.generate(false, uf),
@@ -87,11 +98,15 @@ chrome.contextMenus.onClicked.addListener((info, tabs) => {
   }
 });
 
-function sendMessage(message) {
-  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    chrome.tabs.sendMessage(tabs[0].id, { tag: 'showDocument', message });
-  });
-}
+chrome.commands.onCommand.addListener(async (command) => {
+  let uf = sortState();
+  if (command === 'cpf') {
+    sendMessage(gen.cpf.generate(true, uf));
+  }
+  if (command === 'cnpj') {
+    sendMessage(gen.cnpj.generate(true, uf));
+  }
+});
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if (changeInfo.status === 'complete') {
@@ -102,3 +117,5 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
       .catch(err => console.log(err));
   }
 });
+
+

@@ -5,7 +5,7 @@
 * Gerador de Endereço: Cep, Logradouro, Bairro, Localidade e Estado;
 * Gerador de Contato: E-mail, Celular e Telefone;
 * Gerador de Conta: Agências Bancárias;
-* Gerador Cartão de Crédito: Número, Bandeira, CVV e Validade;
+* Gerador de Cartão de Crédito: Número, Bandeira, CVV e Validade;
 * Consulta Código de Banco.
 
 Útil para DEVs e QAs realizarem testes de sistemas.
