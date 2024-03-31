@@ -21,12 +21,12 @@
     <div id="msgStage" class="msgStage">
       <!-- <div id="warning" class="success-message">Copiado para Área de Transferência</div> -->
     </div>
-    <div class="tooltip">
-      <input type="text" id="generatedData" readonly="readonly" />
+    <div id="divDataGen" class="tooltip">
+      <input type="text" id="fldDataGen" readonly="readonly" />
       <span id="copiedClipboard" class="hidden">Copiado para Área de Transferência</span>
     </div>
 
-    <div class="input-container" id="divMask">
+    <div id="divMask" class="field-container">
       <label class="switch">
         <input type="checkbox" id="fldMask" checked>
         <span class="slider round"></span>
@@ -64,8 +64,9 @@
         <div id="tblCEP" class="tableForm">
           <div class="btnGroup" id="btnGrpCep">
             <button class="cep" id="btnCep">CEP</button>
+            <button class="highlight-button" id="openPageCep">+</button>
           </div>
-          <div id="resultContainer" class="result-container">
+          <div id="resultCep" class="result-container">
             <div id="cepInfo" class="resultInfo hidden"></div>
           </div>
         </div>
@@ -74,18 +75,50 @@
 
     <div id="tabContentAG" class="tab-content">
       <div class="content">
+        <div id="resultConta" class="tooltip result-container">
+          <span id="copiedClipboard2" class="hidden">Copiado para Área de Transferência</span>
+
+          <div id="accountInfo" class="resultInfo">
+            <div class="table">
+              <div class="row">
+                <div class="cell-l">Banco:</div>
+                <div class="cell-r"></div>
+              </div>
+              <div class="row">
+                <div class="cell-l">Código:</div>
+                <div class="cell-r"></div>
+              </div>
+              <div class="row">
+                <div class="cell-l">Agência:</div>
+                <div class="cell-r"></div>
+              </div>
+              <div class="row">
+                <div class="cell-l">Conta:</div>
+                <div class="cell-r"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div id="tblAG" class="tableForm">
-          <div class="input-container">
+          <div class="field-container">
             <select id="bancoSelect">
-              <option value="237">Bradesco</option>
-              <option value="104">Caixa</option>
-              <option value="341">Itaú</option>
-              <option value="33">Santander</option>
+              <option value="Indiferente">Selecione o Banco</option>
+              <option value="Banco do Brasil">Banco do Brasil</option>
+              <option value="Bradesco">Bradesco</option>
+              <option value="Caixa">Caixa</option>
+              <option value="Citibank">Citibank</option>
+              <option value="HSBC">HSBC</option>
+              <option value="Itau">Itaú</option>
+              <option value="Santander">Santander</option>
             </select>
           </div>
+
           <div class="btnGroup" id="btnGrpBanco">
-            <button id="btnAg">AGÊNCIA</button>
+            <button id="btnAg">Gerar Conta</button>
+            <button class="highlight-button" id="openPageBank">+</button>
           </div>
+
 
           <div class="popup-title">
             CONSULTA CÓDIGO DO BANCO
@@ -94,7 +127,7 @@
             <input type="text" id="searchBank" class="searchData" placeholder="">
             <label for="searchBank" class="fld-label">Digite o nome do banco</label>
           </div>
-          <div id="resultContainer" class="result-container">
+          <div id="resultBanco" class="result-container">
             <ul id="bancoResults" class="ul-results"></ul>
             <div id="bancoInfo" class="resultInfo"></div>
           </div>

@@ -18,8 +18,11 @@ chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.local.set({ mask: false });
 
   const menus = [
+    { id: 'cepSem', title: 'CEP sem máscara' },
+    { id: 'cepCom', title: 'CEP com máscara' },
+    { id: 's00', type: 'separator' },
     { id: 'cpfSem', title: 'CPF sem máscara' },
-    { id: 'cpfCom', title: 'CPF com máscara (Alt+F)' },
+    { id: 'cpfCom', title: 'CPF com máscara (Alt+C)' },
     { id: 'rgSem', title: 'RG sem máscara' },
     { id: 'rgCom', title: 'RG com máscara' },
     { id: 'cnh', title: 'CNH' },
@@ -62,6 +65,8 @@ chrome.contextMenus.onClicked.addListener((info, tabs) => {
   let uf = sortState();
 
   const generators = {
+    'cepSem': () => gen.address.generate(false, uf)[0],
+    'cepCom': () => gen.address.generate(true, uf)[0],
     'cpfSem': () => gen.cpf.generate(false, uf),
     'cpfCom': () => gen.cpf.generate(true, uf),
     'rgSem': () => gen.rg.generate(false, uf),

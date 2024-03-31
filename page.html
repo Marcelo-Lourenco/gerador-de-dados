@@ -12,19 +12,25 @@
 
 <body>
   <div class="container">
+    <!-- 
     <div class="menu">
       <ul class="tabs">
         <li class="tab active" id="tabPF">PF</li>
-        <!-- <li class="tab" id="tabPJ">PJ</li> -->
-        <!-- <li class="tab" id="tabCEP">CEP</li> -->
-        <!-- <li class="tab" id="tabAG">Bancos</li> -->
+        <li class="tab" id="tabPJ">PJ</li>
+        <li class="tab" id="tabCEP">CEP</li>
+        <li class="tab" id="tabAG">Bancos</li>
       </ul>
     </div>
-
+    -->
     <div id="tabContentPF" class="tab-content active">
       <div class="content">
         <div id="tblPF" class="tableFormConfig">
-          <div class="input-container">
+          <div class="field-container2">
+            <h1 class="page-title" id="pageTitle">
+              Gerador de Pessoa
+            </h1>
+          </div>
+          <div class="field-container">
             <select id="fldSex">
               <option value="" selected>Selecione</option>
               <option value="f">Feminino</option>
@@ -32,7 +38,7 @@
             </select>
             <label for="fldSex" class="fld-label">Sexo</label>
           </div>
-          <div class="input-container">
+          <div class="field-container">
             <select id="fldState" class="">
               <option value="" selected>Selecione</option>
               <option value="AC">AC</option>
@@ -65,49 +71,228 @@
             </select>
             <label for="fldState" class="fld-label">Estado</label>
           </div>
-          <div class="input-container">
+          <div class="field-container">
+            <select id="fldBank">
+              <option value="Indiferente">Selecione</option>
+              <option value="Banco do Brasil">Banco do Brasil</option>
+              <option value="Bradesco">Bradesco</option>
+              <option value="Caixa">Caixa</option>
+              <option value="Citibank">Citibank</option>
+              <option value="HSBC">HSBC</option>
+              <option value="Itau">Itaú</option>
+              <option value="Santander">Santander</option>
+            </select>
+            <label for="fldBank" class="fld-label">Banco</label>
+          </div>
+          <div class="field-container">
             <label class="switch">
               <input type="checkbox" id="fldMask" checked>
               <span class="slider round"></span>
             </label>
             <span class="switch-label">Márcara</span>
           </div>
-          <div class="input-container">
+          <div class="field-container">
             <button type="button" id="generatorPeople" class="">Gerar Pessoa</button>
           </div>
-          <div class="input-container">
+          <div class="field-container">
             <i id="icon-json" class="icon-json" title="Download"></i>
+            <span class="tooltip" style="display: none;">Copiado</span>
           </div>
         </div>
         <hr>
         <div class="col">
           <div class="vr">
-            <div class="input-container">
+            <div class="group">
+              <span class="div-label">Identificação</span>
+              <div class="field-container">
+                <input type="text" id="fldNome" placeholder="">
+                <label for="fldNome" class="fld-label">Nome</label>
+                <i class="icon-copy"></i>
+              </div>
+              <div class="field-container">
+                <input type="text" id="fldDataNasc" placeholder="">
+                <label for="fldDataNasc" class="fld-label">Data de Nascimento</label>
+                <i class="icon-copy"></i>
+              </div>
+            </div>
+            <div class="group">
+              <span class="div-label">Documentos</span>
+              <div class="field-container">
+                <input type="text" id="fldCpf" placeholder="">
+                <label for="fldCpf" class="fld-label">CPF</label>
+                <i class="icon-copy"></i>
+              </div>
+              <div class="field-container">
+                <input type="text" id="fldRg" placeholder="">
+                <label for="fldRg" class="fld-label">RG</label>
+                <i class="icon-copy"></i>
+              </div>
+              <div class="field-container">
+                <input type="text" id="fldCnh" placeholder="">
+                <label for="fldCnh" class="fld-label">CNH</label>
+                <i class="icon-copy"></i>
+              </div>
+              <div class="field-container">
+                <input type="text" id="fldTituloEleitor" placeholder="">
+                <label for="fldTituloEleitor" class="fld-label">Título de Eleitor</label>
+                <i class="icon-copy"></i>
+              </div>
+              <div class="field-container">
+                <input type="text" id="fldPis" placeholder="">
+                <label for="fldPis" class="fld-label">PIS</label>
+                <i class="icon-copy"></i>
+              </div>
+              <div class="field-container">
+                <input type="text" id="fldCns" placeholder="">
+                <label for="fldCns" class="fld-label">CNS</label>
+                <i class="icon-copy"></i>
+              </div>
+              <div class="field-container">
+                <input type="text" id="fldPassaporte" placeholder="">
+                <label for="fldPassaporte" class="fld-label">Passaporte</label>
+                <i class="icon-copy"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="vr">
+            <div class="group">
+              <span class="div-label">Contatos</span>
+              <div class="field-container">
+                <input type="text" id="fldEmail" placeholder="">
+                <label for="fldEmail" class="fld-label">E-mail</label>
+                <i class="icon-copy"></i>
+              </div>
+              <div class="field-container">
+                <input type="text" id="fldCelular" placeholder="">
+                <label for="fldCelular" class="fld-label">Celular</label>
+                <i class="icon-copy"></i>
+              </div>
+              <div class="field-container">
+                <input type="text" id="fldTelefone" placeholder="">
+                <label for="fldTelefone" class="fld-label">Telefone</label>
+                <i class="icon-copy"></i>
+              </div>
+            </div>
+            <div class="group">
+              <span class="div-label">Endereço</span>
+              <div class="field-container">
+                <input type="text" id="fldCep" placeholder="">
+                <label for="fldCep" class="fld-label">CEP</label>
+                <i class="icon-copy"></i>
+              </div>
+              <div class="field-container">
+                <input type="text" id="fldLogradouro" placeholder="">
+                <label for="fldLogradouro" class="fld-label">Logradouro</label>
+                <i class="icon-copy"></i>
+              </div>
+              <div class="field-container">
+                <input type="text" id="fldNumero" placeholder="">
+                <label for="fldNumero" class="fld-label">Número</label>
+                <i class="icon-copy"></i>
+              </div>
+              <div class="field-container">
+                <input type="text" id="fldBairro" placeholder="">
+                <label for="fldBairro" class="fld-label">Bairro</label>
+                <i class="icon-copy"></i>
+              </div>
+              <div class="field-container">
+                <input type="text" id="fldLocalidade" placeholder="">
+                <label for="fldLocalidade" class="fld-label">Localidade</label>
+                <i class="icon-copy"></i>
+              </div>
+              <div class="field-container">
+                <input type="text" id="fldUf" placeholder="">
+                <label for="fldUf" class="fld-label">UF</label>
+                <i class="icon-copy"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="vr">
+            <div class="group">
+              <span class="div-label">Conta Bancária</span>
+              <div class="field-container">
+                <input type="text" id="fldBancoNome" placeholder="">
+                <label for="fldBancoNome" class="fld-label">Banco</label>
+                <i class="icon-copy"></i>
+              </div>
+              <div class="field-container">
+                <input type="text" id="fldBancoCodigo" placeholder="">
+                <label for="fldBancoCodigo" class="fld-label">Código</label>
+                <i class="icon-copy"></i>
+              </div>
+              <div class="field-container">
+                <input type="text" id="fldAgencia" placeholder="">
+                <label for="fldAgencia" class="fld-label">Agência</label>
+                <i class="icon-copy"></i>
+              </div>
+              <div class="field-container">
+                <input type="text" id="fldConta" placeholder="">
+                <label for="fldConta" class="fld-label">Conta</label>
+                <i class="icon-copy"></i>
+              </div>
+            </div>
+            <div class="group">
+              <span class="div-label">Cartão de Crédito</span>
+              <div class="field-container">
+                <input type="text" id="fldCartaoCredito" placeholder="">
+                <label for="fldCartaoCredito" class="fld-label">Cartão de Crédito</label>
+                <i class="icon-copy"></i>
+              </div>
+              <div class="field-container">
+                <input type="text" id="fldBandeira" placeholder="">
+                <label for="fldBandeira" class="fld-label">Bandeira</label>
+                <i class="icon-copy"></i>
+              </div>
+              <div class="field-container">
+                <input type="text" id="fldTitular" placeholder="">
+                <label for="fldTitular" class="fld-label">Nome Titular</label>
+                <i class="icon-copy"></i>
+              </div>
+              <div class="field-container">
+                <input type="text" id="fldCvv" placeholder="">
+                <label for="fldCvv" class="fld-label">CVV</label>
+                <i class="icon-copy"></i>
+              </div>
+              <div class="field-container">
+                <input type="text" id="fldValidade" placeholder="">
+                <label for="fldValidade" class="fld-label">Válido até</label>
+                <i class="icon-copy"></i>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+        <!-- <div class="col">
+          <div class="vr">
+            <div class="field-container">
               <input type="text" id="fldNome" placeholder="">
               <label for="fldNome" class="fld-label">Nome</label>
               <i class="icon-copy"></i>
             </div>
-            <div class="input-container">
+            <div class="field-container">
               <input type="text" id="fldDataNasc" placeholder="">
               <label for="fldDataNasc" class="fld-label">Data de Nascimento</label>
               <i class="icon-copy"></i>
             </div>
-            <div class="input-container">
+            <div class="field-container">
               <input type="text" id="fldCpf" placeholder="">
               <label for="fldCpf" class="fld-label">CPF</label>
               <i class="icon-copy"></i>
             </div>
-            <div class="input-container">
+            <div class="field-container">
               <input type="text" id="fldRg" placeholder="">
               <label for="fldRg" class="fld-label">RG</label>
               <i class="icon-copy"></i>
             </div>
-            <div class="input-container">
+            <div class="field-container">
               <input type="text" id="fldCnh" placeholder="">
               <label for="fldCnh" class="fld-label">CNH</label>
               <i class="icon-copy"></i>
             </div>
-            <div class="input-container">
+            <div class="field-container">
               <input type="text" id="fldTituloEleitor" placeholder="">
               <label for="fldTituloEleitor" class="fld-label">Título de Eleitor</label>
               <i class="icon-copy"></i>
@@ -115,32 +300,32 @@
           </div>
 
           <div class="vr">
-            <div class="input-container">
+            <div class="field-container">
               <input type="text" id="fldPis" placeholder="">
               <label for="fldPis" class="fld-label">PIS</label>
               <i class="icon-copy"></i>
             </div>
-            <div class="input-container">
+            <div class="field-container">
               <input type="text" id="fldCns" placeholder="">
               <label for="fldCns" class="fld-label">CNS</label>
               <i class="icon-copy"></i>
             </div>
-            <div class="input-container">
+            <div class="field-container">
               <input type="text" id="fldPassaporte" placeholder="">
               <label for="fldPassaporte" class="fld-label">Passaporte</label>
               <i class="icon-copy"></i>
             </div>
-            <div class="input-container">
+            <div class="field-container">
               <input type="text" id="fldEmail" placeholder="">
               <label for="fldEmail" class="fld-label">E-mail</label>
               <i class="icon-copy"></i>
             </div>
-            <div class="input-container">
+            <div class="field-container">
               <input type="text" id="fldCelular" placeholder="">
               <label for="fldCelular" class="fld-label">Celular</label>
               <i class="icon-copy"></i>
             </div>
-            <div class="input-container">
+            <div class="field-container">
               <input type="text" id="fldTelefone" placeholder="">
               <label for="fldTelefone" class="fld-label">Telefone</label>
               <i class="icon-copy"></i>
@@ -148,32 +333,32 @@
           </div>
 
           <div class="vr">
-            <div class="input-container">
+            <div class="field-container">
               <input type="text" id="fldCep" placeholder="">
               <label for="fldCep" class="fld-label">CEP</label>
               <i class="icon-copy"></i>
             </div>
-            <div class="input-container">
+            <div class="field-container">
               <input type="text" id="fldLogradouro" placeholder="">
               <label for="fldLogradouro" class="fld-label">Logradouro</label>
               <i class="icon-copy"></i>
             </div>
-            <div class="input-container">
+            <div class="field-container">
               <input type="text" id="fldNumero" placeholder="">
               <label for="fldNumero" class="fld-label">Número</label>
               <i class="icon-copy"></i>
             </div>
-            <div class="input-container">
+            <div class="field-container">
               <input type="text" id="fldBairro" placeholder="">
               <label for="fldBairro" class="fld-label">Bairro</label>
               <i class="icon-copy"></i>
             </div>
-            <div class="input-container">
+            <div class="field-container">
               <input type="text" id="fldLocalidade" placeholder="">
               <label for="fldLocalidade" class="fld-label">Localidade</label>
               <i class="icon-copy"></i>
             </div>
-            <div class="input-container">
+            <div class="field-container">
               <input type="text" id="fldUf" placeholder="">
               <label for="fldUf" class="fld-label">UF</label>
               <i class="icon-copy"></i>
@@ -181,34 +366,54 @@
           </div>
 
           <div class="vr">
-            <div class="input-container">
+            <div class="field-container">
               <input type="text" id="fldCartaoCredito" placeholder="">
               <label for="fldCartaoCredito" class="fld-label">Cartão de Crédito</label>
               <i class="icon-copy"></i>
             </div>
-            <div class="input-container">
+            <div class="field-container">
               <input type="text" id="fldBandeira" placeholder="">
               <label for="fldBandeira" class="fld-label">Bandeira</label>
               <i class="icon-copy"></i>
             </div>
-            <div class="input-container">
+            <div class="field-container">
               <input type="text" id="fldTitular" placeholder="">
               <label for="fldTitular" class="fld-label">Nome Titular</label>
               <i class="icon-copy"></i>
             </div>
-            <div class="input-container">
+            <div class="field-container">
               <input type="text" id="fldCvv" placeholder="">
               <label for="fldCvv" class="fld-label">CVV</label>
               <i class="icon-copy"></i>
             </div>
-            <div class="input-container">
+            <div class="field-container">
               <input type="text" id="fldValidade" placeholder="">
               <label for="fldValidade" class="fld-label">Válido até</label>
               <i class="icon-copy"></i>
             </div>
+            <div class="field-container">
+              <input type="text" id="fldBancoNome" placeholder="">
+              <label for="fldBancoNome" class="fld-label">Banco</label>
+              <i class="icon-copy"></i>
+            </div>
+            <div class="field-container">
+              <input type="text" id="fldBancoCodigo" placeholder="">
+              <label for="fldBancoCodigo" class="fld-label">Código</label>
+              <i class="icon-copy"></i>
+            </div>
+            <div class="field-container">
+              <input type="text" id="fldConta" placeholder="">
+              <label for="fldConta" class="fld-label">Conta</label>
+              <i class="icon-copy"></i>
+            </div>
+            <div class="field-container">
+              <input type="text" id="fldAgencia" placeholder="">
+              <label for="fldAgencia" class="fld-label">Agência</label>
+              <i class="icon-copy"></i>
+            </div>
           </div>
 
-        </div>
+        </div> -->
       </div>
     </div>
     <div id="tabContentPJ" class="tab-content">
@@ -232,7 +437,7 @@
         </div>
       </div>
     </div>
-    <span class="tooltip" style="display: none;">Copiado</span>
+
   </div>
   <div class="footer">
 

@@ -6,6 +6,7 @@
   --color-background: #fff;
   --color-background-light: #f0f4f9;
   --color-text-default: #333;
+  --color-text-strong: #313131;
   --color-blur: #ededed;
   --color-white: #fff;
   --color-border-default: #dee3ed;
@@ -32,10 +33,8 @@ body {
   width: 95%;
   margin: 10px;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
   background: var(--color-white);
-  border: solid 1px var(--color-border-default);
+  border: 1px solid var(--color-border-default);
   border-radius: 8px;
   box-shadow: var(--shadowDefault);
 }
@@ -99,9 +98,18 @@ body {
 }
 
 .content {
-  margin-top: 30px;
+  margin-top: 5px;
   border: 1px solid var(--color-input-border);
   padding: 10px 30px;
+  border-radius: 8px;
+}
+
+.group {
+  position: relative;
+  margin: 10px 0;
+  padding-top: 5px;
+  overflow: visible;
+  border: 1px solid var(--color-input-border);
   border-radius: 8px;
 }
 
@@ -136,9 +144,15 @@ body {
   color: #b58620;
 }
 
-.input-container {
+.field-container {
   position: relative;
   width: 300px;
+  margin: 20px 15px;
+}
+
+.field-container2 {
+  position: relative;
+  width: 400px;
   margin: 20px 15px;
 }
 
@@ -177,8 +191,22 @@ select {
   left: 10px;
   transform: translateY(-50%);
   transition: top 0.3s ease, font-size 0.3s ease;
-  color: var(--color-input-text);
+  color: var(--color-text-strong);
   pointer-events: none;
+  font-weight: 500;
+}
+
+.div-label {
+  position: absolute;
+  padding: 5px;
+  transform: translateY(-50%);
+  margin-top: -5px;
+  margin-left: 10px;
+  font-size: 14px;
+  background-color: var(--color-input-background);
+  color: var(--color-text-default);
+  pointer-events: none;
+  font-weight: 600;
 }
 
 select .fld-label,
@@ -187,9 +215,10 @@ input:focus+label,
 input:not(:placeholder-shown)+label {
   top: 0px;
   font-size: 12px;
-  color: var(--color-input-text);
+  color: var(--color-text-strong);
   background-color: var(--color-input-background);
   padding: 5px;
+  font-weight: 500;
 }
 
 #buttons,
@@ -284,7 +313,7 @@ input:checked+.slider:before {
   margin-left: 15px;
 }
 
-#generatedData {
+#fldDataGen {
   text-align: center;
   width: 250px;
 }
@@ -358,6 +387,12 @@ input:checked+.slider:before {
   display: table-cell;
   padding: 5px;
   border: 0px solid #ccc;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0.01px;
 }
 
 .popup-title {
@@ -466,18 +501,18 @@ input:checked+.slider:before {
 }
 
 .tooltip {
-  display: none;
+  display: block;
   position: absolute;
-  top: 7%;
-  right: 100px;
-  transform: translateY(-50%);
+  top: 0px;
+  right: 0px;
+  transform: translateY(-0%);
   background-color: #d0f8ce;
   color: #2d652b;
-  padding: 5px 10px;
+  padding: 15px 20px;
   border-radius: 5px;
 }
 
-.input-container:hover .tooltip {
+.field-container:hover .tooltip {
   display: inline-block;
 }
 

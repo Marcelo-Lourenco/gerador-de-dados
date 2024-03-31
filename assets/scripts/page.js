@@ -41,8 +41,6 @@ document.getElementById('icon-json').onclick = function () {
   downloadLink.click();
 };
 
-
-
 const inputFields = document.querySelectorAll('input');
 inputFields.forEach(inputField => {
   inputField.addEventListener('focus', function () {
@@ -103,9 +101,12 @@ function getPeople() {
     }
   };
 
+
   let sex = chooseSex.generate();
   let state = chooseState.generate();
   let mask = document.getElementById("fldMask").checked;
+  let bank = document.getElementById('fldBank').value;
+  let bankAccount = gen.bankAccount.generateSortBank(bank)
 
   let addressFull = gen.address.generate(mask, state)
   let zipCode = addressFull[0];
@@ -159,6 +160,9 @@ function getPeople() {
   document.getElementById('fldCvv').value = cvv;
   document.getElementById('fldValidade').value = expirationDate;
 
+  document.getElementById('fldBancoNome').value = bankAccount.bankName;
+  document.getElementById('fldBancoCodigo').value = bankAccount.bankCode;
+  document.getElementById('fldAgencia').value = bankAccount.agency;
+  document.getElementById('fldConta').value = bankAccount.account;
+
 }
-
-

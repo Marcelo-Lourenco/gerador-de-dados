@@ -1,7 +1,12 @@
 import gen from './generator.js';
-import banks from './db-bancos.js';
 
 document.getElementById('openPage').addEventListener('click', function () {
+  window.open('page.html', '_blank');
+});
+document.getElementById('openPageCep').addEventListener('click', function () {
+  window.open('page.html', '_blank');
+});
+document.getElementById('openPageBank').addEventListener('click', function () {
   window.open('page.html', '_blank');
 });
 
@@ -12,9 +17,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   tabs.forEach((tab) => {
     tab.addEventListener("click", () => {
-      document.getElementById('generatedData').value = '';
+      document.getElementById('fldDataGen').value = '';
       document.getElementById('copiedClipboard').className = '';
       document.getElementById('copiedClipboard').className = 'hidden';
+      document.getElementById('copiedClipboard2').className = '';
+      document.getElementById('copiedClipboard2').className = 'hidden';
 
       tabs.forEach((t) => t.classList.remove("active"));
       tab.classList.add("active");
@@ -28,7 +35,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
       document.getElementById(`tabContent${tabId}`).style.display = "block";
 
-      tabId === "AG" ? divMask.style.display = "none" : divMask.style.display = "block";
+      if (tabId === "AG") {
+        divMask.style.display = "none"
+        divDataGen.style.display = "none"
+        resultConta.style.display = "block"
+        accountInfo.style.display = "block"
+      } else {
+        divMask.style.display = "block"
+        divDataGen.style.display = "block"
+      }
 
     });
   });
@@ -55,50 +70,57 @@ document.addEventListener('DOMContentLoaded', function () {
 
   document.getElementById('btnCpf').addEventListener('click', function () {
     let cpf = gen.cpf.generate(mask(), state());
-    document.getElementById('generatedData').value = cpf;
+    document.getElementById('fldDataGen').value = cpf;
     popup.copy(cpf);
   });
   document.getElementById('btnRg').addEventListener('click', function () {
     let rg = gen.rg.generate(mask(), state());
-    document.getElementById('generatedData').value = rg;
+    document.getElementById('fldDataGen').value = rg;
     popup.copy(rg);
   });
   document.getElementById('btnCnh').addEventListener('click', function () {
     let cnh = gen.cnh.generate(mask(), state());
-    document.getElementById('generatedData').value = cnh;
+    document.getElementById('fldDataGen').value = cnh;
     popup.copy(cnh);
   });
   document.getElementById('btnPis').addEventListener('click', function () {
     let pis = gen.pis.generate(mask(), state());
-    document.getElementById('generatedData').value = pis;
+    document.getElementById('fldDataGen').value = pis;
     popup.copy(pis);
   });
   document.getElementById('btnCnpj').addEventListener('click', function () {
     let cnpj = gen.cnpj.generate(mask(), state());
-    document.getElementById('generatedData').value = cnpj;
+    document.getElementById('fldDataGen').value = cnpj;
     popup.copy(cnpj);
   });
   document.getElementById('btnIe').addEventListener('click', function () {
     let ie = gen.ie.generate(mask(), state());
-    document.getElementById('generatedData').value = ie;
+    document.getElementById('fldDataGen').value = ie;
     popup.copy(ie);
   });
   document.getElementById('btnCep').addEventListener('click', function () {
     let addressFull = gen.address.generate(mask(), state())
     let zipCode = addressFull[0];
     let address = addressFull[1];
-    document.getElementById('generatedData').value = zipCode;
+    document.getElementById('fldDataGen').value = zipCode;
     popup.copy(zipCode);
     popup.showCep(address)
   });
+  //document.getElementById('btnAg').addEventListener('click', function () {
+  //  const bancoSelect = document.getElementById('bancoSelect').value;
+  //  const sortAgency = gen.bank.generate(Number(bancoSelect)).agency
+  //  document.getElementById('fldDataGen').value = sortAgency;
+  //  popup.copy(sortAgency);
+  //  //popup.showAgency(bancoSelect)
+  //});
+
   document.getElementById('btnAg').addEventListener('click', function () {
     const bancoSelect = document.getElementById('bancoSelect').value;
-    const sortAgency = gen.bank.generate(Number(bancoSelect)).agency
-    document.getElementById('generatedData').value = sortAgency;
-    popup.copy(sortAgency);
-    //popup.showAgency(bancoSelect)
+    let bankAccount = gen.bankAccount.generateSortBank(bancoSelect)
+    let bankAccountStr = `Banco: ${bankAccount.bankCode} - ${bankAccount.bankName}\nAg: ${bankAccount.agency}\nCC: ${bankAccount.account}`
+    popup.copy(bankAccountStr);
+    popup.showBankAccount(bankAccount)
   });
-
 
 });
 
@@ -107,6 +129,7 @@ let popup = {
     navigator.clipboard.writeText(value)
       .then(function () {
         document.getElementById('copiedClipboard').className = 'tooltiptext';
+        document.getElementById('copiedClipboard2').className = 'tooltiptext';
       })
       .catch(function (err) {
         console.error('Erro ao copiar conteúdo para a área de transferência: ', err);
@@ -138,6 +161,30 @@ let popup = {
         </div>
       </div>`;
     document.getElementById('cepInfo').classList.add('visible');
+  },
+  showBankAccount: (bankAccount) => {
+    const containerElement = document.getElementById('accountInfo');
+    containerElement.innerHTML = `
+      <div class="table">
+      <div class="row">
+            <div class="cell-l">Banco:</div>
+            <div class="cell-r">${bankAccount.bankName}</div>
+        </div>
+       <div class="row">
+            <div class="cell-l">Código:</div>
+            <div class="cell-r">${bankAccount.bankCode}</div>
+        </div>
+        <div class="row">
+            <div class="cell-l">Agência:</div>
+            <div class="cell-r">${bankAccount.agency}</div>
+        </div>
+        <div class="row">
+            <div class="cell-l">Conta:</div>
+            <div class="cell-r">${bankAccount.account}</div>
+        </div>
+      </div>
+      `;
+    document.getElementById('accountInfo').classList.add('visible');
   }
 }
 

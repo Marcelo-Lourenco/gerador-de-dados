@@ -35,8 +35,8 @@
    "commands": {
       "cpf": {
          "suggested_key": {
-            "default": "Alt+F",
-            "mac": "Alt+F"
+            "default": "Alt+C",
+            "mac": "Alt+C"
          },
          "description": "CPF"
       },
