@@ -106,9 +106,9 @@ function getPeople() {
   let state = chooseState.generate();
   let mask = document.getElementById("fldMask").checked;
   let bank = document.getElementById('fldBank').value;
-  let bankAccount = gen.bankAccount.generateSortBank(bank)
+  let bankAccount = gen.bankAccount.generateSortBank(bank);
 
-  let addressFull = gen.address.generate(mask, state)
+  let addressFull = gen.address.generate(mask, state);
   let zipCode = addressFull[0];
   let address = addressFull[1];
 

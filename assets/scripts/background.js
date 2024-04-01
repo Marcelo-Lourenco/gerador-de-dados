@@ -19,45 +19,63 @@ chrome.runtime.onInstalled.addListener(() => {
 
   const menus = [
     { id: 'cepSem', title: 'CEP sem máscara' },
-    { id: 'cepCom', title: 'CEP com máscara' },
-    { id: 's00', type: 'separator' },
     { id: 'cpfSem', title: 'CPF sem máscara' },
-    { id: 'cpfCom', title: 'CPF com máscara (Alt+C)' },
+    { id: 'cnpjSem', title: 'CNPJ sem máscara' },
     { id: 'rgSem', title: 'RG sem máscara' },
-    { id: 'rgCom', title: 'RG com máscara' },
     { id: 'cnh', title: 'CNH' },
     { id: 'tituloSem', title: 'Título de Eleitor sem máscara' },
-    { id: 'tituloCom', title: 'Título de Eleitor com máscara' },
     { id: 'pisSem', title: 'PIS sem máscara' },
-    { id: 'pisCom', title: 'PIS com máscara' },
     { id: 'cnsSem', title: 'CNS sem máscara' },
-    { id: 'cnsCom', title: 'CNS com máscara' },
     { id: 'passaporte', title: 'Passaporte' },
-    { id: 's01', type: 'separator' },
-    { id: 'cnpjSem', title: 'CNPJ sem máscara' },
-    { id: 'cnpjCom', title: 'CNPJ com máscara (Alt+J)' },
     { id: 'ieSem', title: 'Insc. Estadual sem máscara' },
-    { id: 'ieCom', title: 'Insc. Estadual com máscara' },
-    { id: 's02', type: 'separator' },
     { id: 'nomeMas', title: 'Nome Masculino' },
     { id: 'nomeFem', title: 'Nome Feminino' },
     { id: 'email', title: 'E-mail' },
     { id: 'nickname', title: 'Nickname' },
     { id: 'dtNasc', title: 'Data Nascimento' },
-    { id: 's03', type: 'separator' },
     { id: 'cartaoCreditoSem', title: 'Cartão de Crédito sem máscara' },
+
+    { id: 's01', type: 'separator' },
+
+    { id: 'cepCom', title: 'CEP com máscara (Alt + Shift + C)' },
+    { id: 'cpfCom', title: 'CPF com máscara (Alt + Shift + F)' },
+    { id: 'cnpjCom', title: 'CNPJ com máscara (Alt + Shift + J)' },
+    { id: 'rgCom', title: 'RG com máscara' },
+    { id: 'tituloCom', title: 'Título de Eleitor com máscara' },
+    { id: 'pisCom', title: 'PIS com máscara' },
+    { id: 'cnsCom', title: 'CNS com máscara' },
+    { id: 'ieCom', title: 'Insc. Estadual com máscara' },
     { id: 'cartaoCreditoCom', title: 'Cartão de Crédito com máscara' },
-    { id: 's04', type: 'separator' },
-    { id: 'ag237', title: 'Ag. Bradesco' },
-    { id: 'ag104', title: 'Ag. Caixa' },
-    { id: 'ag341', title: 'Ag. Itaú' },
-    { id: 'ag33', title: 'Ag. Santande' }
+
+    { id: 's02', type: 'separator' },
+
+    { id: 'conta', title: 'Conta Bancária' }
+  ];
+
+  const submenus = [
+    { parentId: 'conta', id: 'agBB', title: 'Banco do Brasil - Agência' },
+    { parentId: 'conta', id: 'ccBB', title: 'Banco do Brasil - Conta' },
+    { parentId: 'conta', id: 'agBradesco', title: 'Bradesco - Agência' },
+    { parentId: 'conta', id: 'ccBradesco', title: 'Bradesco - Conta' },
+    { parentId: 'conta', id: 'agCaixa', title: 'Caixa - Agência' },
+    { parentId: 'conta', id: 'ccCaixa', title: 'Caixa - Conta' },
+    { parentId: 'conta', id: 'agCitibank', title: 'Citibank - Agência' },
+    { parentId: 'conta', id: 'ccCitibank', title: 'Citibank - Conta' },
+    { parentId: 'conta', id: 'agHSBC', title: 'HSBC - Agência' },
+    { parentId: 'conta', id: 'ccHSBC', title: 'HSBC - Conta' },
+    { parentId: 'conta', id: 'agItau', title: 'Itaú - Agência' },
+    { parentId: 'conta', id: 'ccItau', title: 'Itaú - Conta' },
+    { parentId: 'conta', id: 'agSantander', title: 'Santander - Agência' },
+    { parentId: 'conta', id: 'ccSantander', title: 'Santander - Conta' }
   ];
 
   const parentId = chrome.contextMenus.create({ id: 'parent', title: 'Gerador de Dados', contexts: ['all', 'editable', 'selection'] });
 
   menus.forEach(menu => {
     chrome.contextMenus.create({ parentId, contexts: ['all', 'editable'], ...menu });
+  });
+  submenus.forEach(submenu => {
+    chrome.contextMenus.create({ parentId: submenu.parentId, contexts: ['all', 'editable'], id: submenu.id, title: submenu.title });
   });
 });
 
@@ -90,12 +108,23 @@ chrome.contextMenus.onClicked.addListener((info, tabs) => {
     'nickname': () => gen.nickname.generate(),
     'cartaoCreditoSem': () => gen.creditCard.generate(false).number,
     'cartaoCreditoCom': () => gen.creditCard.generate(true).number,
-    'ag237': () => gen.bank.generate(237).agency,
-    'ag104': () => gen.bank.generate(104).agency,
-    'ag341': () => gen.bank.generate(341).agency,
-    'ag33': () => gen.bank.generate(33).agency,
 
+    'agBB': () => gen.bankAccount.generateSortBank('Banco do Brasil').agency,
+    'ccBB': () => gen.bankAccount.generateSortBank('Banco do Brasil').account,
+    'agBradesco': () => gen.bankAccount.generateSortBank('Bradesco').agency,
+    'ccBradesco': () => gen.bankAccount.generateSortBank('Bradesco').account,
+    'agCaixa': () => gen.bankAccount.generateSortBank('Caixa').agency,
+    'ccCaixa': () => gen.bankAccount.generateSortBank('Caixa').account,
+    'agCitibank': () => gen.bankAccount.generateSortBank('Citibank').agency,
+    'ccCitibank': () => gen.bankAccount.generateSortBank('Citibank').account,
+    'agHSBC': () => gen.bankAccount.generateSortBank('HSBC').agency,
+    'ccHSBC': () => gen.bankAccount.generateSortBank('HSBC').account,
+    'agItau': () => gen.bankAccount.generateSortBank('Itau').agency,
+    'ccItau': () => gen.bankAccount.generateSortBank('Itau').account,
+    'agSantander': () => gen.bankAccount.generateSortBank('Santander').agency,
+    'ccSantander': () => gen.bankAccount.generateSortBank('Santander').account
   };
+
 
   const generator = generators[info.menuItemId];
   if (generator) {
@@ -105,6 +134,9 @@ chrome.contextMenus.onClicked.addListener((info, tabs) => {
 
 chrome.commands.onCommand.addListener(async (command) => {
   let uf = sortState();
+  if (command === 'cep') {
+    sendMessage(gen.address.generate(true, uf)[0]);
+  }
   if (command === 'cpf') {
     sendMessage(gen.cpf.generate(true, uf));
   }

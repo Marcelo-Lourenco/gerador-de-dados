@@ -4,7 +4,7 @@
 * Gerador de Empresa: CNPJ, Inscrição Estadual;
 * Gerador de Endereço: Cep, Logradouro, Bairro, Localidade e Estado;
 * Gerador de Contato: E-mail, Celular e Telefone;
-* Gerador de Conta: Agências Bancárias e  Conta Bancária;
+* Gerador de Conta: Agência Bancária e Conta Bancária;
 * Gerador de Cartão de Crédito: Número, Bandeira, CVV e Validade;
 * Consulta Código de Banco.
 

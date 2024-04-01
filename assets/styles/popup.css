@@ -193,7 +193,8 @@ button {
 }
 
 .highlight-button {
-  background-color: #0faf73;
+  /* background-color: #0faf73; */
+  background-color: #f37b23;
   color: #fff;
 }
 
@@ -202,7 +203,9 @@ button:hover {
 }
 
 .highlight-button:hover {
-  background-color: #08905d;
+  /* background-color: #08905d; */
+  background-color: #e14c0c;
+
 }
 
 .switch {
