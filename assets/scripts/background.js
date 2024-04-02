@@ -18,6 +18,8 @@ chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.local.set({ mask: false });
 
   const menus = [
+
+    /* 
     { id: 'cepSem', title: 'CEP sem máscara' },
     { id: 'cpfSem', title: 'CPF sem máscara' },
     { id: 'cnpjSem', title: 'CNPJ sem máscara' },
@@ -34,9 +36,7 @@ chrome.runtime.onInstalled.addListener(() => {
     { id: 'nickname', title: 'Nickname' },
     { id: 'dtNasc', title: 'Data Nascimento' },
     { id: 'cartaoCreditoSem', title: 'Cartão de Crédito sem máscara' },
-
     { id: 's01', type: 'separator' },
-
     { id: 'cepCom', title: 'CEP com máscara (Alt + Shift + C)' },
     { id: 'cpfCom', title: 'CPF com máscara (Alt + Shift + F)' },
     { id: 'cnpjCom', title: 'CNPJ com máscara (Alt + Shift + J)' },
@@ -46,25 +46,85 @@ chrome.runtime.onInstalled.addListener(() => {
     { id: 'cnsCom', title: 'CNS com máscara' },
     { id: 'ieCom', title: 'Insc. Estadual com máscara' },
     { id: 'cartaoCreditoCom', title: 'Cartão de Crédito com máscara' },
-
     { id: 's02', type: 'separator' },
+     */
 
-    { id: 'conta', title: 'Conta Bancária' }
+    { id: 'semMascara', title: 'Sem Máscara' },
+    { id: 's01', type: 'separator' },
+    { id: 'comMascara', title: 'Com Máscara' },
+    { id: 's02', type: 'separator' },
+    { id: 'contatosOutros', title: 'Contatos e Outro' },
+    { id: 's03', type: 'separator' },
+    { id: 'conta', title: 'Conta Bancária' },
+
   ];
 
   const submenus = [
+
+    { parentId: 'semMascara', id: 'cpfSem', title: 'CPF' },
+    { parentId: 'semMascara', id: 'rgSem', title: 'RG' },
+    { parentId: 'semMascara', id: 'cnh', title: 'CNH' },
+    { parentId: 'semMascara', id: 'pisSem', title: 'PIS' },
+    { parentId: 'semMascara', id: 'cnsSem', title: 'CNS' },
+    { parentId: 'semMascara', id: 'tituloSem', title: 'Título de Eleitor' },
+    { parentId: 'semMascara', id: 'passaporte', title: 'Passaporte' },
+    { parentId: 'semMascara', id: 's11', type: 'separator' },
+    { parentId: 'semMascara', id: 'cnpjSem', title: 'CNPJ' },
+    { parentId: 'semMascara', id: 'ieSem', title: 'Insc. Estadual' },
+    { parentId: 'semMascara', id: 's12', type: 'separator' },
+    { parentId: 'semMascara', id: 'cepSem', title: 'CEP' },
+    { parentId: 'semMascara', id: 's13', type: 'separator' },
+    { parentId: 'semMascara', id: 'cartaoCreditoSem', title: 'Cartão de Crédito' },
+    { parentId: 'semMascara', id: 's14', type: 'separator' },
+    { parentId: 'semMascara', id: 'celularSem', title: 'Celular' },
+    { parentId: 'semMascara', id: 'telefoneSem', title: 'Telefone' },
+
+
+    { parentId: 'comMascara', id: 'cpfCom', title: 'CPF (Alt+Shift+F)' },
+    { parentId: 'comMascara', id: 'rgCom', title: 'RG' },
+    { parentId: 'comMascara', id: 'pisCom', title: 'PIS' },
+    { parentId: 'comMascara', id: 'cnsCom', title: 'CNS' },
+    { parentId: 'comMascara', id: 'tituloCom', title: 'Título de Eleitor' },
+    { parentId: 'comMascara', id: 's21', type: 'separator' },
+    { parentId: 'comMascara', id: 'cnpjCom', title: 'CNPJ (Alt+Shift+J)' },
+    { parentId: 'comMascara', id: 'ieCom', title: 'Insc. Estadual' },
+    { parentId: 'comMascara', id: 's22', type: 'separator' },
+    { parentId: 'comMascara', id: 'cepCom', title: 'CEP (Alt+Shift+C)' },
+    { parentId: 'comMascara', id: 's23', type: 'separator' },
+    { parentId: 'comMascara', id: 'cartaoCreditoCom', title: 'Cartão de Crédito' },
+    { parentId: 'comMascara', id: 's24', type: 'separator' },
+    { parentId: 'comMascara', id: 'celularCom', title: 'Celular' },
+    { parentId: 'comMascara', id: 'telefoneCom', title: 'Telefone' },
+
+    { parentId: 'contatosOutros', id: 'email', title: 'E-mail' },
+    { parentId: 'contatosOutros', id: 's31', type: 'separator' },
+    { parentId: 'contatosOutros', id: 'celularCom2', title: 'Celular' },
+    { parentId: 'contatosOutros', id: 'telefoneCom2', title: 'Telefone' },
+    { parentId: 'contatosOutros', id: 's32', type: 'separator' },
+    { parentId: 'contatosOutros', id: 'nomeMas', title: 'Nome Masculino' },
+    { parentId: 'contatosOutros', id: 'nomeFem', title: 'Nome Feminino' },
+    { parentId: 'contatosOutros', id: 'nickname', title: 'Nickname' },
+    { parentId: 'contatosOutros', id: 's33', type: 'separator' },
+    { parentId: 'contatosOutros', id: 'dtNasc', title: 'Data Nascimento' },
+
     { parentId: 'conta', id: 'agBB', title: 'Banco do Brasil - Agência' },
     { parentId: 'conta', id: 'ccBB', title: 'Banco do Brasil - Conta' },
+    { parentId: 'conta', id: 's41', type: 'separator' },
     { parentId: 'conta', id: 'agBradesco', title: 'Bradesco - Agência' },
     { parentId: 'conta', id: 'ccBradesco', title: 'Bradesco - Conta' },
+    { parentId: 'conta', id: 's42', type: 'separator' },
     { parentId: 'conta', id: 'agCaixa', title: 'Caixa - Agência' },
     { parentId: 'conta', id: 'ccCaixa', title: 'Caixa - Conta' },
+    { parentId: 'conta', id: 's43', type: 'separator' },
     { parentId: 'conta', id: 'agCitibank', title: 'Citibank - Agência' },
     { parentId: 'conta', id: 'ccCitibank', title: 'Citibank - Conta' },
+    { parentId: 'conta', id: 's44', type: 'separator' },
     { parentId: 'conta', id: 'agHSBC', title: 'HSBC - Agência' },
     { parentId: 'conta', id: 'ccHSBC', title: 'HSBC - Conta' },
+    { parentId: 'conta', id: 's45', type: 'separator' },
     { parentId: 'conta', id: 'agItau', title: 'Itaú - Agência' },
     { parentId: 'conta', id: 'ccItau', title: 'Itaú - Conta' },
+    { parentId: 'conta', id: 's46', type: 'separator' },
     { parentId: 'conta', id: 'agSantander', title: 'Santander - Agência' },
     { parentId: 'conta', id: 'ccSantander', title: 'Santander - Conta' }
   ];
@@ -75,7 +135,7 @@ chrome.runtime.onInstalled.addListener(() => {
     chrome.contextMenus.create({ parentId, contexts: ['all', 'editable'], ...menu });
   });
   submenus.forEach(submenu => {
-    chrome.contextMenus.create({ parentId: submenu.parentId, contexts: ['all', 'editable'], id: submenu.id, title: submenu.title });
+    chrome.contextMenus.create({ parentId: submenu.parentId, contexts: ['all', 'editable'], ...submenu });
   });
 });
 
@@ -105,6 +165,12 @@ chrome.contextMenus.onClicked.addListener((info, tabs) => {
     'nomeFem': () => gen.name.generate("f"),
     'dtNasc': () => gen.birthDate.generate(),
     'email': () => gen.email.generateNickname(),
+    'celularSem': () => gen.cellphone.generate(false, uf),
+    'celularCom': () => gen.cellphone.generate(true, uf),
+    'celularCom2': () => gen.cellphone.generate(true, uf),
+    'telefoneSem': () => gen.telephone.generate(false, uf),
+    'telefoneCom': () => gen.telephone.generate(true, uf),
+    'telefoneCom2': () => gen.telephone.generate(true, uf),
     'nickname': () => gen.nickname.generate(),
     'cartaoCreditoSem': () => gen.creditCard.generate(false).number,
     'cartaoCreditoCom': () => gen.creditCard.generate(true).number,
