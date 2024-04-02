@@ -44,14 +44,11 @@ let birthDate = {
     const ageInDays = Math.floor(Math.random() * (80 * 365 - 18 * 365) + 18 * 365);
     const now = new Date();
     const birthDt = new Date(now.getTime() - ageInDays * 24 * 60 * 60 * 1000);
-
-    // Formatar a data para o formato dd/mm/aaaa
     const d = String(birthDt.getDate()).padStart(2, '0');
     const m = String(birthDt.getMonth() + 1).padStart(2, '0');
     const a = birthDt.getFullYear();
 
     return `${d}/${m}/${a}`;
-
   }
 }
 

@@ -3,12 +3,6 @@ import gen from './generator.js';
 document.getElementById('openPage').addEventListener('click', function () {
   window.open('page.html', '_blank');
 });
-document.getElementById('openPageCep').addEventListener('click', function () {
-  window.open('page.html', '_blank');
-});
-document.getElementById('openPageBank').addEventListener('click', function () {
-  window.open('page.html', '_blank');
-});
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -36,11 +30,13 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById(`tabContent${tabId}`).style.display = "block";
 
       if (tabId === "AG") {
+        msgStage.style.display = "none"
         divMask.style.display = "none"
         divDataGen.style.display = "none"
         resultConta.style.display = "block"
         accountInfo.style.display = "block"
       } else {
+        msgStage.style.display = "block"
         divMask.style.display = "block"
         divDataGen.style.display = "block"
       }
@@ -88,6 +84,36 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('fldDataGen').value = pis;
     popup.copy(pis);
   });
+  document.getElementById('btnCns').addEventListener('click', function () {
+    let cns = gen.cns.generate(mask(), state());
+    document.getElementById('fldDataGen').value = cns;
+    popup.copy(cns);
+  });
+  document.getElementById('btnTitulo').addEventListener('click', function () {
+    let titulo = gen.voterTitle.generate(mask(), state());
+    document.getElementById('fldDataGen').value = titulo;
+    popup.copy(titulo);
+  });
+  document.getElementById('btnNome').addEventListener('click', function () {
+    let nome = gen.name.generate();
+    document.getElementById('fldDataGen').value = nome;
+    popup.copy(nome);
+  });
+  document.getElementById('btnEmail').addEventListener('click', function () {
+    let email = gen.email.generate(gen.nickname.generate());
+    document.getElementById('fldDataGen').value = email;
+    popup.copy(email);
+  });
+  document.getElementById('btnNascimento').addEventListener('click', function () {
+    let nascimento = gen.birthDate.generate();
+    document.getElementById('fldDataGen').value = nascimento;
+    popup.copy(nascimento);
+  });
+  document.getElementById('btnPassaporte').addEventListener('click', function () {
+    let passaporte = gen.passport.generate();
+    document.getElementById('fldDataGen').value = passaporte;
+    popup.copy(passaporte);
+  });
   document.getElementById('btnCnpj').addEventListener('click', function () {
     let cnpj = gen.cnpj.generate(mask(), state());
     document.getElementById('fldDataGen').value = cnpj;
@@ -106,6 +132,16 @@ document.addEventListener('DOMContentLoaded', function () {
     popup.copy(zipCode);
     popup.showCep(address)
   });
+  document.getElementById('btnCelular').addEventListener('click', function () {
+    let cellphone = gen.cellphone.generate(mask(), state());
+    document.getElementById('fldDataGen').value = cellphone;
+    popup.copy(cellphone);
+  });
+  document.getElementById('btnTelefone').addEventListener('click', function () {
+    let telephone = gen.telephone.generate(mask(), state());
+    document.getElementById('fldDataGen').value = telephone;
+    popup.copy(telephone);
+  });
   //document.getElementById('btnAg').addEventListener('click', function () {
   //  const bancoSelect = document.getElementById('bancoSelect').value;
   //  const sortAgency = gen.bank.generate(Number(bancoSelect)).agency
@@ -122,6 +158,19 @@ document.addEventListener('DOMContentLoaded', function () {
     popup.showBankAccount(bankAccount)
   });
 
+
+  document.getElementById('btnCartao').addEventListener('click', function () {
+    // TODO consultar por bandera
+    /* const bandeiraSelect = document.getElementById('bandeiraSelect').value */;
+    let creditCardFull = gen.creditCard.generate(mask/* , bandeiraSelect */);
+    let creditCardStr = `Cartão: ${creditCardFull.number}\nBandeira: ${creditCardFull.brand}\nCVV: ${creditCardFull.cvv}\nValidade: ${creditCardFull.expirationDate}`
+    popup.copy(creditCardStr);
+    popup.showCreditCard(creditCardFull)
+  });
+
+
+
+
 });
 
 let popup = {
@@ -130,6 +179,7 @@ let popup = {
       .then(function () {
         document.getElementById('copiedClipboard').className = 'tooltiptext';
         document.getElementById('copiedClipboard2').className = 'tooltiptext';
+        document.getElementById('copiedClipboard3').className = 'tooltiptext';
       })
       .catch(function (err) {
         console.error('Erro ao copiar conteúdo para a área de transferência: ', err);
@@ -185,6 +235,30 @@ let popup = {
       </div>
       `;
     document.getElementById('accountInfo').classList.add('visible');
+  },
+  showCreditCard: (creditCardFull) => {
+    const containerElement = document.getElementById('creditCardInfo');
+    containerElement.innerHTML = `
+      <div class="table">
+      <div class="row">
+            <div class="cell-l">Cartão:</div>
+            <div class="cell-r">${creditCardFull.number}</div>
+        </div>
+       <div class="row">
+            <div class="cell-l">Bandeira:</div>
+            <div class="cell-r">${creditCardFull.brand}</div>
+        </div>
+        <div class="row">
+            <div class="cell-l">CVV:</div>
+            <div class="cell-r">${creditCardFull.cvv}</div>
+        </div>
+        <div class="row">
+            <div class="cell-l">Validade:</div>
+            <div class="cell-r">${creditCardFull.expirationDate}</div>
+        </div>
+      </div>
+      `;
+    document.getElementById('creditCardInfo').classList.add('visible');
   }
 }
 

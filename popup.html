@@ -15,7 +15,7 @@
     <ul class="tabs">
       <li class="tab active" id="tabPF">PF</li>
       <li class="tab" id="tabPJ">PJ</li>
-      <li class="tab" id="tabCEP">CEP</li>
+      <li class="tab" id="tabCEP">Contato</li>
       <li class="tab" id="tabAG">Bancos</li>
     </ul>
     <div id="msgStage" class="msgStage">
@@ -37,12 +37,20 @@
     <div id="tabContentPF" class="tab-content">
       <div class="content">
         <div id="tblPF" class="tableForm">
-          <div class="btnGroup" id="btnGrpDocPF">
-            <button class="" id="btnCpf">CPF</button>
-            <button class="" id="btnRg">RG</button>
-            <button class="" id="btnCnh">CNH</button>
-            <button class="" id="btnPis">PIS</button>
-            <button class="highlight-button" id="openPage">PESSOA</button>
+          <div class="btnGroup" id="btnGrpDocPF1">
+            <button class="btn1" id="btnCpf">CPF</button>
+            <button class="btn1" id="btnRg">RG</button>
+            <button class="btn1" id="btnCnh">CNH</button>
+            <button class="btn1" id="btnPis">PIS</button>
+            <button class="btn1" id="btnCns">CNS</button>
+            <button class="btn2" id="btnTitulo">Título</button>
+          </div>
+          <div class="btnGroup" id="btnGrpDocPF2">
+            <button class="btn1" id="btnNome">Nome</button>
+            <button class="btn1" id="btnEmail">Email</button>
+            <button class="btn2" id="btnNascimento">Nascimento</button>
+            <button class="btn2" id="btnPassaporte">Passaporte</button>
+            <button class="btn2 highlight-button" id="openPage">PESSOA</button>
           </div>
         </div>
       </div>
@@ -64,7 +72,8 @@
         <div id="tblCEP" class="tableForm">
           <div class="btnGroup" id="btnGrpCep">
             <button class="cep" id="btnCep">CEP</button>
-            <button class="highlight-button" id="openPageCep">+</button>
+            <button class="btn2" id="btnCelular">Celular</button>
+            <button class="btn2" id="btnTelefone">Telefone</button>
           </div>
           <div id="resultCep" class="result-container">
             <div id="cepInfo" class="resultInfo hidden"></div>
@@ -75,30 +84,6 @@
 
     <div id="tabContentAG" class="tab-content">
       <div class="content">
-        <div id="resultConta" class="tooltip result-container">
-          <span id="copiedClipboard2" class="hidden">Copiado para Área de Transferência</span>
-
-          <div id="accountInfo" class="resultInfo">
-            <div class="table">
-              <div class="row">
-                <div class="cell-l">Banco:</div>
-                <div class="cell-r"></div>
-              </div>
-              <div class="row">
-                <div class="cell-l">Código:</div>
-                <div class="cell-r"></div>
-              </div>
-              <div class="row">
-                <div class="cell-l">Agência:</div>
-                <div class="cell-r"></div>
-              </div>
-              <div class="row">
-                <div class="cell-l">Conta:</div>
-                <div class="cell-r"></div>
-              </div>
-            </div>
-          </div>
-        </div>
 
         <div id="tblAG" class="tableForm">
           <div class="field-container">
@@ -113,10 +98,79 @@
               <option value="Santander">Santander</option>
             </select>
           </div>
+          <div class="group">
+            <div class="vr">
+              <div id="resultConta" class="tooltip result-container">
+                <span id="copiedClipboard2" class="hidden">Copiado para Área de Transferência</span>
 
-          <div class="btnGroup" id="btnGrpBanco">
-            <button id="btnAg">Gerar Conta</button>
-            <button class="highlight-button" id="openPageBank">+</button>
+                <div id="accountInfo" class="resultInfo">
+                  <div class="table">
+                    <div class="row">
+                      <div class="cell-l">Banco:</div>
+                      <div class="cell-r"></div>
+                    </div>
+                    <div class="row">
+                      <div class="cell-l">Código:</div>
+                      <div class="cell-r"></div>
+                    </div>
+                    <div class="row">
+                      <div class="cell-l">Agência:</div>
+                      <div class="cell-r"></div>
+                    </div>
+                    <div class="row">
+                      <div class="cell-l">Conta:</div>
+                      <div class="cell-r"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="btnGroup" id="btnGrpBanco">
+                <button id="btnAg">CONTA</button>
+
+              </div>
+            </div>
+            <div class="vr">
+              <div id="resultCartao" class="tooltip result-container">
+                <span id="copiedClipboard3" class="hidden">Copiado para Área de Transferência</span>
+
+                <div id="creditCardInfo" class="resultInfo">
+                  <div class="table">
+                    <div class="row">
+                      <div class="cell-l">Cartão:</div>
+                      <div class="cell-r"></div>
+                    </div>
+                    <div class="row">
+                      <div class="cell-l">Bandeira:</div>
+                      <div class="cell-r"></div>
+                    </div>
+                    <div class="row">
+                      <div class="cell-l">CVV:</div>
+                      <div class="cell-r"></div>
+                    </div>
+                    <div class="row">
+                      <div class="cell-l">Validade:</div>
+                      <div class="cell-r"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="field-container">
+                <select id="bandeiraSelect">
+                  <option value="Indiferente">Selecione Bandeira</option>
+                  <option value="mastercard">Mastercard</option>
+                  <option value="visa">Visa</option>
+                  <option value="elo">Elo</option>
+                  <option value="jcb">JCB</option>
+                  <option value="discover">Discover</option>
+                </select> 
+              </div>-->
+
+              <div class="btnGroup" id="btnGrpCartao">
+                <button id="btnCartao">CARTÃO</button>
+              </div>
+            </div>
           </div>
 
 
@@ -129,7 +183,27 @@
           </div>
           <div id="resultBanco" class="result-container">
             <ul id="bancoResults" class="ul-results"></ul>
-            <div id="bancoInfo" class="resultInfo"></div>
+            <div id="bancoInfo" class="resultInfo">
+              <div class="table">
+                <div class="row">
+                  <div class="cell-l">Código:</div>
+                  <div class="cell-r"></div>
+                </div>
+                <div class="row">
+                  <div class="cell-l">Nome:</div>
+                  <div class="cell-r"></div>
+                </div>
+                <div class="row">
+                  <div class="cell-l">ISPB:</div>
+                  <div class="cell-r"></div>
+                </div>
+                <div class="row">
+                  <div class="cell-l">Razão Social:</div>
+                  <div class="cell-r"></div>
+                </div>
+
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -53,7 +53,6 @@ function displayBankInfo(bank) {
         <div class="cell-l">Razão Social:</div>
         <div class="cell-r">${bank.fullName}</div>
       </div>
-      
     </div>`;
   //<div class="row">
   //  <div class="cell-l">Agências:</div>
