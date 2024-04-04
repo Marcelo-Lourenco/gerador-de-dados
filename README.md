@@ -6,6 +6,7 @@
 * Gerador de Contato: E-mail, Celular e Telefone;
 * Gerador de Conta: Agência Bancária e Conta Bancária;
 * Gerador de Cartão de Crédito: Número, Bandeira, CVV e Validade;
+* Gerador de Veículo: Placa Antiga, Placa Mercosul e Renavam;
 * Consulta Código de Banco.
 
 Útil para DEVs e QAs realizarem testes de sistemas.
@@ -58,8 +59,8 @@ Gera na extensão ou direto no campo (input) das páginas web.
 
 #### Veículos
 
-- [ ] Placa
-- [ ] Renavan
+- [X] Placa
+- [X] Renavan
 
 #### Texto
 

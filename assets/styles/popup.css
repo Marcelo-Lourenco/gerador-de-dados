@@ -337,7 +337,12 @@ input:checked+.slider:before {
 }
 
 .resultInfo {
-  width: 100%;
+  min-width: 100%;
+  /* min-height: 118px; */
+}
+
+.resultInfo2 {
+  width: 220px;
   /* min-height: 118px; */
 }
 
@@ -354,6 +359,20 @@ input:checked+.slider:before {
 }
 
 .cell-r {
+  display: table-cell;
+  padding: 3px 1px;
+  border: 0px solid #ccc;
+}
+
+.cell-l2 {
+  display: table-cell;
+  width: 60px;
+  padding: 3px 1px;
+  text-align: right;
+  font-weight: 600;
+}
+
+.cell-r2 {
   display: table-cell;
   padding: 3px 1px;
   border: 0px solid #ccc;
@@ -384,6 +403,11 @@ input:checked+.slider:before {
 }
 
 .result-container {
+  margin: 10px 0;
+  min-width: 270px;
+}
+
+.result-container2 {
   margin: 10px 0;
   width: 100%;
 }

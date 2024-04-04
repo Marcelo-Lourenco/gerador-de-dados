@@ -78,6 +78,10 @@ chrome.runtime.onInstalled.addListener(() => {
     { parentId: 'semMascara', id: 's14', type: 'separator' },
     { parentId: 'semMascara', id: 'celularSem', title: 'Celular' },
     { parentId: 'semMascara', id: 'telefoneSem', title: 'Telefone' },
+    { parentId: 'semMascara', id: 's15', type: 'separator' },
+    { parentId: 'semMascara', id: 'placaAntigaSem', title: 'Placa Antiga' },
+    { parentId: 'semMascara', id: 'placaMercosulSem', title: 'Placa Mercosul' },
+    { parentId: 'semMascara', id: 'renavam', title: 'Renavam' },
 
 
     { parentId: 'comMascara', id: 'cpfCom', title: 'CPF (Alt+Shift+F)' },
@@ -95,6 +99,9 @@ chrome.runtime.onInstalled.addListener(() => {
     { parentId: 'comMascara', id: 's24', type: 'separator' },
     { parentId: 'comMascara', id: 'celularCom', title: 'Celular' },
     { parentId: 'comMascara', id: 'telefoneCom', title: 'Telefone' },
+    { parentId: 'comMascara', id: 's25', type: 'separator' },
+    { parentId: 'comMascara', id: 'placaAntigaCom', title: 'Placa Antiga' },
+    { parentId: 'comMascara', id: 'placaMercosulCom', title: 'Placa Mercosul' },
 
     { parentId: 'contatosOutros', id: 'email', title: 'E-mail' },
     { parentId: 'contatosOutros', id: 's31', type: 'separator' },
@@ -161,6 +168,11 @@ chrome.contextMenus.onClicked.addListener((info, tabs) => {
     'cnpjCom': () => gen.cnpj.generate(true),
     'ieSem': () => gen.ie.generate(false),
     'ieCom': () => gen.ie.generate(true),
+    'placaAntigaSem': () => gen.licensePlate.generate(false, false),
+    'placaAntigaCom': () => gen.licensePlate.generate(true, false),
+    'placaMercosulSem': () => gen.licensePlate.generate(false, true),
+    'placaMercosulCom': () => gen.licensePlate.generate(true, true),
+    'renavam': () => gen.renavam.generate(),
     'nomeMas': () => gen.name.generate("m"),
     'nomeFem': () => gen.name.generate("f"),
     'dtNasc': () => gen.birthDate.generate(),

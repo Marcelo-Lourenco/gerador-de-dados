@@ -124,6 +124,21 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('fldDataGen').value = ie;
     popup.copy(ie);
   });
+  document.getElementById('btnPlacaMercosul').addEventListener('click', function () {
+    let plate = gen.licensePlate.generate(mask(), true);
+    document.getElementById('fldDataGen').value = plate;
+    popup.copy(plate);
+  });
+  document.getElementById('btnPlacaAntiga').addEventListener('click', function () {
+    let plate = gen.licensePlate.generate(mask(), false);
+    document.getElementById('fldDataGen').value = plate;
+    popup.copy(plate);
+  });
+  document.getElementById('btnRenavam').addEventListener('click', function () {
+    let renavam = gen.renavam.generate();
+    document.getElementById('fldDataGen').value = renavam;
+    popup.copy(renavam);
+  });
   document.getElementById('btnCep').addEventListener('click', function () {
     let addressFull = gen.address.generate(mask(), state())
     let zipCode = addressFull[0];
@@ -217,20 +232,20 @@ let popup = {
     containerElement.innerHTML = `
       <div class="table">
       <div class="row">
-            <div class="cell-l">Banco:</div>
-            <div class="cell-r">${bankAccount.bankName}</div>
+            <div class="cell-l2">Banco:</div>
+            <div class="cell-r2">${bankAccount.bankName}</div>
         </div>
        <div class="row">
-            <div class="cell-l">Código:</div>
-            <div class="cell-r">${bankAccount.bankCode}</div>
+            <div class="cell-l2">Código:</div>
+            <div class="cell-r2">${bankAccount.bankCode}</div>
         </div>
         <div class="row">
-            <div class="cell-l">Agência:</div>
-            <div class="cell-r">${bankAccount.agency}</div>
+            <div class="cell-l2">Agência:</div>
+            <div class="cell-r2">${bankAccount.agency}</div>
         </div>
         <div class="row">
-            <div class="cell-l">Conta:</div>
-            <div class="cell-r">${bankAccount.account}</div>
+            <div class="cell-l2">Conta:</div>
+            <div class="cell-r2">${bankAccount.account}</div>
         </div>
       </div>
       `;
@@ -241,20 +256,20 @@ let popup = {
     containerElement.innerHTML = `
       <div class="table">
       <div class="row">
-            <div class="cell-l">Cartão:</div>
-            <div class="cell-r">${creditCardFull.number}</div>
+            <div class="cell-l2">Cartão:</div>
+            <div class="cell-r2">${creditCardFull.number}</div>
         </div>
        <div class="row">
-            <div class="cell-l">Bandeira:</div>
-            <div class="cell-r">${creditCardFull.brand}</div>
+            <div class="cell-l2">Bandeira:</div>
+            <div class="cell-r2">${creditCardFull.brand}</div>
         </div>
         <div class="row">
-            <div class="cell-l">CVV:</div>
-            <div class="cell-r">${creditCardFull.cvv}</div>
+            <div class="cell-l2">CVV:</div>
+            <div class="cell-r2">${creditCardFull.cvv}</div>
         </div>
         <div class="row">
-            <div class="cell-l">Validade:</div>
-            <div class="cell-r">${creditCardFull.expirationDate}</div>
+            <div class="cell-l2">Validade:</div>
+            <div class="cell-r2">${creditCardFull.expirationDate}</div>
         </div>
       </div>
       `;

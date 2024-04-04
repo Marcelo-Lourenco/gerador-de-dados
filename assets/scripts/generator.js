@@ -54,7 +54,8 @@ let birthDate = {
 
 let cpf = {
   generate: function (mask, state) {
-    const n1 = cpf.r(), n2 = cpf.r(), n3 = cpf.r(), n4 = cpf.r(), n5 = cpf.r(), n6 = cpf.r(), n7 = cpf.r(), n8 = cpf.r(), n9 = cpf.numStates(state);
+    let n = () => Math.round(Math.random() * 9);
+    const n1 = n(), n2 = n(), n3 = n(), n4 = n(), n5 = n(), n6 = n(), n7 = n(), n8 = n(), n9 = cpf.numStates(state);
 
     let d1 = n9 * 2 + n8 * 3 + n7 * 4 + n6 * 5 + n5 * 6 + n4 * 7 + n3 * 8 + n2 * 9 + n1 * 10;
     d1 = 11 - (cpf.mod(d1, 11));
@@ -85,15 +86,13 @@ let cpf = {
   },
   mod: function (dividend, divider) {
     return Math.round(dividend - (Math.floor(dividend / divider) * divider));
-  },
-  r: function () {
-    return Math.round(Math.random() * 9);
   }
 }
 
 let cnpj = {
   generate: function (mask) {
-    let n1 = cnpj.r(), n2 = cnpj.r(), n3 = cnpj.r(), n4 = cnpj.r(), n5 = cnpj.r(), n6 = cnpj.r(), n7 = cnpj.r(), n8 = cnpj.r(), n9 = 0, n10 = 0, n11 = 0, n12 = 1;
+    let n = () => Math.round(Math.random() * 9);
+    let n1 = n(), n2 = n(), n3 = n(), n4 = n(), n5 = n(), n6 = n(), n7 = n(), n8 = n(), n9 = 0, n10 = 0, n11 = 0, n12 = 1;
 
     let dv1 = n12 * 2 + n11 * 3 + n10 * 4 + n9 * 5 + n8 * 6 + n7 * 7 + n6 * 8 + n5 * 9 + n4 * 2 + n3 * 3 + n2 * 4 + n1 * 5;
     dv1 = cnpj.calcDV(dv1);
@@ -107,16 +106,14 @@ let cnpj = {
   calcDV: function (dv) {
     dv = 11 - (dv % 11);
     return (dv >= 10) ? 0 : dv;
-  },
-  r: function () {
-    return Math.round(Math.random() * 9);
   }
 }
 
 let rg = {
   generate: function (mask, state) {
-    const n1 = Math.floor((Math.random() * 4) + 1),
-      n2 = rg.r(), n3 = rg.r(), n4 = rg.r(), n5 = rg.r(), n6 = rg.r(), n7 = rg.r(), n8 = rg.r();
+    let n = () => Math.round(Math.random() * 9);
+    let n1 = Math.floor((Math.random() * 4) + 1);
+    let n2 = n(), n3 = n(), n4 = n(), n5 = n(), n6 = n(), n7 = n(), n8 = n();
 
     const sum = n1 * 2 + n2 * 3 + n3 * 4 + n4 * 5 + n5 * 6 + n6 * 7 + n7 * 8 + n8 * 9;
     let dv = 11 - (sum % 11);
@@ -131,10 +128,7 @@ let rg = {
 
     let rgGen = `${n1}${n2}.${n3}${n4}${n5}.${n6}${n7}${n8}-${dv}`;
 
-    return mask ? rgGen : rgGen.replace(/\D/g, '');
-  },
-  r: function () {
-    return Math.round(Math.random() * 9);
+    return mask ? rgGen : rgGen.replace(/[^a-zA-Z0-9]/g, '');
   }
 }
 
@@ -357,9 +351,10 @@ let operator = {
 
 let cellphone = {
   generate: function (mask, state) {
-    const sortDdd = ddd.generate(state);
-    const sortOperator = operator.generate();
-    const n3 = cellphone.r(), n4 = cellphone.r(), n5 = cellphone.r(), n6 = cellphone.r(), n7 = cellphone.r(), n8 = cellphone.r();
+    let n = () => Math.round(Math.random() * 9);
+    let sortDdd = ddd.generate(state);
+    let sortOperator = operator.generate();
+    const n3 = n(), n4 = n(), n5 = n(), n6 = n(), n7 = n(), n8 = n();
 
     let cellphoneGen = `(${sortDdd}) ${sortOperator}${n3}${n4}-${n5}${n6}${n7}${n8}`;
 
@@ -372,32 +367,47 @@ let cellphone = {
 
 let telephone = {
   generate: function (mask, state) {
-    const sortDdd = ddd.generate(state);
-
-    const n1 = Math.floor(Math.random() * (3 - 2 + 1)) + 2;
-    const n2 = telephone.r(), n3 = telephone.r(), n4 = telephone.r(), n5 = telephone.r(), n6 = telephone.r(), n7 = telephone.r(), n8 = telephone.r();
-
+    let n = () => Math.round(Math.random() * 9);
+    let sortDdd = ddd.generate(state);
+    let n1 = Math.floor(Math.random() * (3 - 2 + 1)) + 2;
+    let n2 = n(), n3 = n(), n4 = n(), n5 = n(), n6 = n(), n7 = n(), n8 = n();
     let telephoneGen = `(${sortDdd}) ${n1}${n2}${n3}${n4}-${n5}${n6}${n7}${n8}`;
 
     return mask ? telephoneGen : telephoneGen.replace(/\D/g, '');
-  },
-  r: function () {
-    return Math.round(Math.random() * 9);
   }
 }
 
 let ie = {
   generate: function (mask) {
-    let n1 = ie.r(), n2 = ie.r(), n3 = ie.r(), n4 = ie.r(), n5 = ie.r(), n6 = ie.r();
+    let n = () => Math.round(Math.random() * 9);
+    let n1 = n(), n2 = n(), n3 = n(), n4 = n(), n5 = n(), n6 = n();
 
     let ieGen = `${n1}${n2}${n3}.${n4}${n5}${n6}`;
     return mask ? ieGen : ieGen.replace(/\D/g, '');
   },
   validate: function (documento) {
     return (documento.length === 6 && !isNaN(documento));
-  },
-  r: function () {
-    return Math.round(Math.random() * 9);
+  }
+};
+
+let licensePlate = {
+  generate: function (mask = true, mercosul = true) {
+    let n = () => Math.floor(Math.random() * 10);
+    let l = () => String.fromCharCode(65 + Math.floor(Math.random() * 26));
+    let plate = mercosul ? `${l()}${l()}${l()}-${n()}${l()}${n()}${n()}` : `${l()}${l()}${l()}-${n()}${n()}${n()}${n()}`;
+    return mask ? plate : plate.replace(/[^A-Z0-9]/g, '');
+  }
+}
+
+let renavam = {
+  generate: function () {
+    let n = () => Math.floor((Math.random() * 9) + 0);
+    let n0 = n(), n1 = n(), n2 = n(), n3 = n(), n4 = n(), n5 = n(), n6 = n(), n7 = n(), n8 = n(), n9 = n();
+    let mod = (((n() * 3) + (n() * 2) + (n() * 9) + (n() * 8) + (n4 * 7) + (n5 * 6) + (n6 * 5) + (n7 * 4) + (n8 * 3) + (n9 * 2)) * 10) % 11;
+    if (mod === 10) {
+      mod = 0;
+    }
+    return '' + n0 + n1 + n2 + n3 + n4 + n5 + n6 + n7 + n8 + n9 + mod;
   }
 };
 
@@ -791,4 +801,4 @@ const bankAccount = {
 
 
 
-export default { address, name, birthDate, cpf, cnpj, rg, cnh, categoryCnh, voterTitle, pis, cns, passport, email, nickname, cellphone, telephone, ie, bank, creditCard, bankAccount };
+export default { address, name, birthDate, cpf, cnpj, rg, cnh, categoryCnh, voterTitle, pis, cns, passport, email, nickname, cellphone, telephone, ie, licensePlate, renavam, bank, creditCard, bankAccount };
