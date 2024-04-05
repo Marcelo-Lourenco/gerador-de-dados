@@ -17,7 +17,7 @@ Gera na extensão ou direto no campo (input) das páginas web.
 
 ## Demo
 
-[https://chromewebstore.google.com/detail/gerador-de-dados/ipfihnddjaepajgdamecijfdefikdgam](https://chromewebstore.google.com/detail/gerador-de-dados/ipfihnddjaepajgdamecijfdefikdgam)
+[https://chromewebstore.google.com/detail/ipfihnddjaepajgdamecijfdefikdgam](https://chromewebstore.google.com/detail/ipfihnddjaepajgdamecijfdefikdgam)
 
 ## Tipos Implementados
 

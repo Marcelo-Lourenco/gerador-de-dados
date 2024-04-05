@@ -1,7 +1,7 @@
 {
    "manifest_version": 3,
-   "name": "Gerador de Dados CPF RG CNH PIS CNPJ CEP +",
-   "description": "Gerador de Dados Fictícios: CPF, RG, CNH, PIS, CNPJ, CEP, Contatos, Inscrição Estadual e Contas Bancárias. Consulta Código de Bancos",
+   "name": "Gerador de Dados Fictícios CPF CNPJ CEP ++",
+   "description": "Gerador de CPF, RG, CNH, PIS, CNS, TÍTULO, PASSAPORTE, CNPJ, INSCR. ESTADUAL, CONTA BANCÁRIA, CARTÃO, CEP, EMAIL, CELULAR, RENAVAM e PLACA",
    "version": "1.2.7",
    "icons": {
       "16": "assets/images/icons/icon-16.png",
