@@ -556,7 +556,7 @@ const formatter = function (list, type, digit = '') {
     formatted += list[i];
   }
   if (type.toUpperCase() === 'AG') {
-    return `${formatted}${digit ? '-' + digit : '0'} `; //AG
+    return `${formatted}${digit ? '-' + digit : '0'}`; //AG
   } else if (type.toUpperCase() === 'CC') {
     return `${formatted}${digit ? '-' + digit : '0'}`; //CC
   } else {
