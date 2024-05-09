@@ -2,7 +2,7 @@
    "manifest_version": 3,
    "name": "Gerador de Dados Fictícios CPF CNPJ CEP ++",
    "description": "Gerador de CPF, RG, CNH, PIS, CNS, TÍTULO, PASSAPORTE, CNPJ, INSCR. ESTADUAL, CONTA BANCÁRIA, CARTÃO, CEP, EMAIL, RENAVAM e PLACA",
-   "version": "1.2.7",
+   "version": "1.2.8",
    "icons": {
       "16": "assets/images/icons/icon-16.png",
       "32": "assets/images/icons/icon-32.png",

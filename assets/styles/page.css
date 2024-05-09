@@ -310,7 +310,12 @@ input:checked+.slider:before {
 }
 
 .switch-label {
-  margin-left: 15px;
+  position: absolute;
+  top: 4px;
+  margin-left: 5px;
+  font-size: 14px;
+  white-space: nowrap;
+  font-weight: 500;
 }
 
 #fldDataGen {

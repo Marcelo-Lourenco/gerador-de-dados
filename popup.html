@@ -32,7 +32,7 @@
         <input type="checkbox" id="fldMask" checked>
         <span class="slider round"></span>
       </label>
-      <span class="switch-label">Márcara</span>
+      <span class="switch-label">Usar Márcara</span>
     </div>
 
     <div id="tabContentPF" class="tab-content">
@@ -224,39 +224,51 @@
   </div>
 
   <div class="footer">
-
     <ul class="footer-ul">
-      <li class="footer-li">
-        <a class="footer-a"
+      <li class="footer-li tooltip-lnk">
+        <a class=""
           href="https://chromewebstore.google.com/detail/ipfihnddjaepajgdamecijfdefikdgam/support?filterBy=suggestions"
           target="_blank">
-          Sugestões
+          <div id="icon-suggestion" class="icon-suggestion"></div>
         </a>
+        <span class="tooltiptext">Sugestões</span>
+      </li>
+
+      <li class="footer-li tooltip-lnk">
+        <a class=""
+          href="https://chromewebstore.google.com/detail/ipfihnddjaepajgdamecijfdefikdgam/support?filterBy=questions"
+          target="_blank">
+          <div id="icon-support" class="icon-support"></div>
+        </a>
+        <span class="tooltiptext">Suporte</span>
+      </li>
+
+    </ul>
+    <ul class="footer-ul">
+      <li class="footer-li tooltip-lnk">
+        <a href="https://chromewebstore.google.com/detail/ipfihnddjaepajgdamecijfdefikdgam/reviews" target="_blank">
+          <div role="img" class="stars-container tooltip-lnk">
+            <div class="stars-block">
+              <div class="stars-outline">
+                <div class="svg-stars svg-star-outline"></div>
+                <div class="svg-stars svg-star-outline"></div>
+                <div class="svg-stars svg-star-outline"></div>
+                <div class="svg-stars svg-star-outline"></div>
+                <div class="svg-stars svg-star-outline"></div>
+              </div>
+              <div class="stars-full" style="width: 99%;">
+                <div class="svg-stars svg-star"></div>
+                <div class="svg-stars svg-star"></div>
+                <div class="svg-stars svg-star"></div>
+                <div class="svg-stars svg-star"></div>
+                <div class="svg-stars svg-star"></div>
+              </div>
+            </div>
+          </div>
+        </a>
+        <span class="tooltiptext">Avaliar</span>
       </li>
     </ul>
-
-
-    <a href="https://chromewebstore.google.com/detail/ipfihnddjaepajgdamecijfdefikdgam/reviews" target="_blank">
-      <div role="img" class="stars-container tooltip">
-        <div class="stars-block">
-          <div class="stars-outline">
-            <div class="svg-stars svg-star-outline"></div>
-            <div class="svg-stars svg-star-outline"></div>
-            <div class="svg-stars svg-star-outline"></div>
-            <div class="svg-stars svg-star-outline"></div>
-            <div class="svg-stars svg-star-outline"></div>
-          </div>
-          <div class="stars-full" style="width: 91%;">
-            <div class="svg-stars svg-star"></div>
-            <div class="svg-stars svg-star"></div>
-            <div class="svg-stars svg-star"></div>
-            <div class="svg-stars svg-star"></div>
-            <div class="svg-stars svg-star"></div>
-          </div>
-        </div>
-        <span id="avaliar" class="tooltiptext hidden">Avaliar</span>
-      </div>
-    </a>
   </div>
 
   <script type="module" src="assets/scripts/popup.js"></script>
