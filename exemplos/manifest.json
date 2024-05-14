@@ -1,0 +1,52 @@
+{
+   "manifest_version": 3,
+   "name": "Gerador de Dados - CPF RG CNH PIS CNPJ CEP ++",
+   "description": "Gerador de Dados Fictícios: CPF, RG, CNH, PIS, CNPJ, CEP, Contatos, Inscrição Estadual, Bancos e Agências. Consulta Código de Bancos",
+   "version": "1.2.3",
+   "icons": {
+      "16": "assets/images/icons/icon-16.png",
+      "32": "assets/images/icons/icon-32.png",
+      "48": "assets/images/icons/icon-48.png",
+      "64": "assets/images/icons/icon-64.png",
+      "128": "assets/images/icons/icon-128.png"
+   },
+   "action": {
+      "default_icon": "assets/images/icons/icon-32.png",
+      "default_popup": "popup.html",
+      "default_title": "Gerador de Dados Fictícios"
+   },
+   "background": {
+      "service_worker": "./assets/scripts/background.js",
+      "type": "module"
+   },
+   "content_security_policy": {
+      "extension_pages": "script-src 'self'; object-src 'self'"
+   },
+   "offline_enabled": true,
+   "permissions": [
+      "storage",
+      "background",
+      "contextMenus",
+      "scripting"
+   ],
+   "host_permissions": [
+      "*://*/*"
+   ],
+   "commands": {
+      "cpf": {
+         "suggested_key": {
+            "default": "Alt+C",
+            "mac": "Alt+C"
+         },
+         "description": "CPF"
+      },
+      "cnpj": {
+         "suggested_key": {
+            "default": "Alt+J",
+            "mac": "Alt+J"
+         },
+         "description": "CNPJ"
+      }
+   },
+   "author": "Marcelo Lourenço"
+}
