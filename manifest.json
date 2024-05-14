@@ -27,9 +27,7 @@
       "storage",
       "background",
       "contextMenus",
-      "scripting",
-      "webNavigation",
-      "tabs"
+      "scripting"
    ],
    "host_permissions": [
       "*://*/*"
